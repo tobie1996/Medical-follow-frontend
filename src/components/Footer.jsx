@@ -3,7 +3,7 @@ import { Baby, Phone, Mail, MapPin, Clock, Facebook, Twitter, Instagram, Youtube
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white mx-[15px]">
+    <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white">
       {/* Section principale */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -108,7 +108,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3 text-gray-400">
                 <Mail className="w-5 h-5 text-teal-400" />
-                <span className="text-base">contact@maternicare.cm</span>
+                <span className="text-base">contact@prenacare.cm</span>
               </div>
               <div className="flex items-center space-x-3 text-gray-400">
                 <Clock className="w-5 h-5 text-teal-400" />
@@ -139,10 +139,10 @@ const Footer = () => {
 
       {/* Pied de page */}
       <div className="border-t border-gray-700">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-8">
+        <div className="max-w-ful mx-auto px-6 sm:px-8 lg:px-10 py-8">
           <div className="md:flex md:items-center md:justify-between">
             <div className="text-gray-400 text-base">
-              © 2025 MaterniCare. Tous droits réservés. | Plateforme sécurisée de consultation prénatale
+              © 2025 PrenaCare. Tous droits réservés. | Plateforme sécurisée de consultation prénatale
             </div>
             <div className="mt-4 md:mt-0">
               <div className="flex space-x-8 text-base">
