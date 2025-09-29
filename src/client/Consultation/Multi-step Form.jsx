@@ -1,87 +1,298 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { User, Calendar, Heart, Stethoscope, Baby } from 'lucide-react';
+
+// Import des composants
+import { 
+  ProgressSteps, 
+  StepHeader, 
+  NavigationButtons, 
+  SuccessScreen 
+} from './components';
+
+// Import des étapes
+import { 
+  PersonalInfoStep, 
+  MedicalHistoryStep, 
+  PregnancyInfoStep, 
+  AppointmentStep 
+} from './steps';
 
 const MultiStepForm = () => {
+  const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    // Étape 1: Informations personnelles
+    fullName: '',
+    birthDate: '',
+    address: '',
+    phone: '',
+    email: '',
+    
+    // Étape 2: Informations médicales
+    bloodType: '',
+    allergies: '',
+    chronicDiseases: '',
+    medications: '',
+    
+    // Étape 3: Informations de grossesse
+    lastPeriodDate: '',
+    previousPregnancies: '',
+    complications: '',
+    expectedDueDate: '',
+    
+    // Étape 4: Préférences de consultation
+    preferredDate: '',
+    preferredTime: '',
+    emergencyContact: '',
+    emergencyPhone: '',
+    notes: ''
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const totalSteps = 4;
+
+  const steps = [
+    {
+      id: 1,
+      title: "Informations Personnelles",
+      icon: User,
+      color: "from-teal-500 to-cyan-600",
+      illustration: "👤"
+    },
+    {
+      id: 2,
+      title: "Antécédents Médicaux",
+      icon: Stethoscope,
+      color: "from-blue-500 to-indigo-600",
+      illustration: "🏥"
+    },
+    {
+      id: 3,
+      title: "Informations de Grossesse",
+      icon: Heart,
+      color: "from-purple-500 to-pink-600",
+      illustration: "💝"
+    },
+    {
+      id: 4,
+      title: "Rendez-vous",
+      icon: Calendar,
+      color: "from-orange-500 to-red-500",
+      illustration: "📅"
+    }
+  ];
+
+  const validateStep = (step) => {
+    const newErrors = {};
+
+    if (step === 1) {
+      if (!formData.fullName.trim()) newErrors.fullName = "Le nom complet est requis";
+      if (!formData.birthDate) newErrors.birthDate = "La date de naissance est requise";
+      if (!formData.address.trim()) newErrors.address = "L'adresse est requise";
+      if (!formData.phone.trim()) newErrors.phone = "Le téléphone est requis";
+      if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
+        newErrors.email = "L'email n'est pas valide";
+      }
+    }
+
+    if (step === 2) {
+      if (!formData.bloodType) newErrors.bloodType = "Le groupe sanguin est requis";
+    }
+
+    if (step === 3) {
+      if (!formData.lastPeriodDate) newErrors.lastPeriodDate = "La date des dernières règles est requise";
+    }
+
+    if (step === 4) {
+      if (!formData.preferredDate) newErrors.preferredDate = "La date préférée est requise";
+      if (!formData.preferredTime) newErrors.preferredTime = "L'heure préférée est requise";
+      if (!formData.emergencyContact.trim()) newErrors.emergencyContact = "Le contact d'urgence est requis";
+      if (!formData.emergencyPhone.trim()) newErrors.emergencyPhone = "Le téléphone d'urgence est requis";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
+  };
+
+  const handleNext = () => {
+    if (validateStep(currentStep) && currentStep < totalSteps) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateStep(currentStep)) {
+      setIsSubmitted(true);
+      // Ici vous pouvez ajouter l'envoi des données vers votre API
+      console.log('Données du formulaire:', formData);
+    }
+  };
+
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0
+    })
+  };
+
+  const renderStepContent = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <PersonalInfoStep
+            formData={formData}
+            onChange={handleInputChange}
+            errors={errors}
+          />
+        );
+      case 2:
+        return (
+          <MedicalHistoryStep
+            formData={formData}
+            onChange={handleInputChange}
+            errors={errors}
+          />
+        );
+      case 3:
+        return (
+          <PregnancyInfoStep
+            formData={formData}
+            onChange={handleInputChange}
+            errors={errors}
+          />
+        );
+      case 4:
+        return (
+          <AppointmentStep
+            formData={formData}
+            onChange={handleInputChange}
+            errors={errors}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
+  if (isSubmitted) {
+    return <SuccessScreen />;
+  }
+
   return (
-    <div className="mx-[15px] min-h-screen bg-gradient-to-br from-teal-50 via-white to-blue-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            Consultation Prénatale
+    <div className="mx-[10px] md:mx-[15px] min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-6 md:py-12 px-2 md:px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
+        <motion.div 
+          className="text-center mb-8 md:mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <motion.div 
+            className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-gradient-to-r from-teal-500 to-blue-500 rounded-full mb-4 md:mb-6"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          >
+            <Baby className="w-8 h-8 md:w-10 md:h-10 text-white" />
+          </motion.div>
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent mb-3 md:mb-4 leading-tight">
+            Première Consultation Prénatale
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-2">
             Remplissez ce formulaire pour planifier votre suivi médical personnalisé
           </p>
-        </div>
-        
-        <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10">
-          <div className="space-y-8">
-            <div className="text-center">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                Étape 1 sur 4
-              </h2>
-              <div className="w-full bg-gray-200 rounded-full h-3">
-                <div className="bg-gradient-to-r from-teal-500 to-blue-500 h-3 rounded-full" style={{width: '25%'}}></div>
-              </div>
-            </div>
-            
-            <div className="space-y-6">
-              <h3 className="text-xl font-semibold text-gray-800">
-                Informations personnelles
-              </h3>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-lg font-medium text-gray-700 mb-2">
-                    Nom complet *
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                    placeholder="Votre nom complet"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-lg font-medium text-gray-700 mb-2">
-                    Date de naissance *
-                  </label>
-                  <input
-                    type="date"
-                    className="w-full px-4 py-3 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <label className="block text-lg font-medium text-gray-700 mb-2">
-                  Adresse complète *
-                </label>
-                <textarea
-                  rows="3"
-                  className="w-full px-4 py-3 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                  placeholder="Votre adresse complète"
-                ></textarea>
-              </div>
-            </div>
-            
-            <div className="flex justify-between pt-6">
-              <button
-                className="px-8 py-3 text-lg font-medium text-gray-600 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors"
-                disabled
+        </motion.div>
+
+        {/* Progress Steps */}
+        <ProgressSteps 
+          steps={steps}
+          currentStep={currentStep}
+          totalSteps={totalSteps}
+        />
+
+        {/* Form Card */}
+        <motion.div 
+          className="bg-white rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden border border-gray-100"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <StepHeader step={steps[currentStep - 1]} />
+
+          <form onSubmit={handleSubmit} className="p-4 md:p-8 lg:p-10">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentStep}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.3 }}
+                custom={1}
               >
-                Précédent
-              </button>
-              <button
-                className="px-8 py-3 text-lg font-medium text-white bg-gradient-to-r from-teal-500 to-blue-500 rounded-lg hover:from-teal-600 hover:to-blue-600 transition-colors"
-              >
-                Suivant
-              </button>
-            </div>
-          </div>
-        </div>
+                {renderStepContent()}
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Navigation Buttons */}
+            <NavigationButtons
+              currentStep={currentStep}
+              totalSteps={totalSteps}
+              onPrevious={handlePrevious}
+              onNext={handleNext}
+              onSubmit={handleSubmit}
+            />
+          </form>
+        </motion.div>
+
+        {/* Footer */}
+        <motion.div 
+          className="text-center mt-8 md:mt-12 text-gray-600 px-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          <p className="text-xs md:text-sm leading-relaxed">
+            Vos informations sont sécurisées et confidentielles. 
+            <span className="text-teal-600 font-semibold"> Protégé par chiffrement SSL</span>
+          </p>
+        </motion.div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MultiStepForm
+export default MultiStepForm;
