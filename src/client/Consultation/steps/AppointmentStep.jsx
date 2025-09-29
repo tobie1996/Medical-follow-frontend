@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, User, Phone, AlertCircle } from 'lucide-react';
+import { Calendar, User, Phone, AlertCircle, Building2 } from 'lucide-react';
 import FormInput from '../components/FormInput';
 
 const AppointmentStep = ({ formData, onChange, errors }) => {
@@ -13,9 +13,21 @@ const AppointmentStep = ({ formData, onChange, errors }) => {
     { value: '16:00', label: '16:00 - 17:00' }
   ];
 
+  const hospitalOptions = [
+    { value: 'chu-yaounde', label: 'CHU de Yaoundé' },
+    { value: 'hopital-central', label: 'Hôpital Central de Yaoundé' },
+    { value: 'hopital-gyneco-obstetrique', label: 'Hôpital Gynéco-Obstétrique et Pédiatrique de Yaoundé' },
+    { value: 'hopital-jamot', label: 'Hôpital Jamot de Yaoundé' },
+    { value: 'clinique-la-cathédrale', label: 'Clinique de la Cathédrale' },
+    { value: 'centre-medical-la-colombe', label: 'Centre Médical La Colombe' },
+    { value: 'hopital-general-douala', label: 'Hôpital Général de Douala' },
+    { value: 'hopital-laquintinie', label: 'Hôpital Laquintinie - Douala' },
+    { value: 'clinique-des-specialistes', label: 'Clinique des Spécialistes - Douala' }
+  ];
+
   return (
     <div className="space-y-4 md:space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
         <FormInput
           label="Date préférée"
           name="preferredDate"
@@ -41,6 +53,21 @@ const AppointmentStep = ({ formData, onChange, errors }) => {
           iconColor="text-orange-600"
           focusColor="focus:ring-orange-500 focus:border-orange-500"
           options={timeSlotOptions}
+        />
+
+        <FormInput
+          label="Hôpital"
+          name="hospital"
+          type="select"
+          value={formData.hospital}
+          onChange={onChange}
+          error={errors.hospital}
+          required
+          icon={Building2}
+          iconColor="text-orange-600"
+          focusColor="focus:ring-orange-500 focus:border-orange-500"
+          options={hospitalOptions}
+          placeholder="Sélectionnez un hôpital"
         />
       </div>
 

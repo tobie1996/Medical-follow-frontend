@@ -186,16 +186,6 @@ const Header = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <Link to="/login">
-              <motion.button 
-                className="hidden lg:flex items-center space-x-3 text-base text-gray-700 hover:text-teal-600 transition-colors px-4 py-3"
-                variants={buttonVariants}
-                whileHover="hover"
-                whileTap="tap"
-              >
-                Se connecter
-              </motion.button>
-            </Link>
             <Link to="/register">
               <motion.button 
                 className="flex items-center space-x-1 md:space-x-2 lg:space-x-3 bg-gradient-to-r from-teal-500 to-blue-500 text-white text-xs md:text-sm lg:text-base px-2 md:px-4 lg:px-6 py-2 lg:py-3 rounded-lg hover:from-teal-600 hover:to-blue-600 transition-colors shadow-lg"

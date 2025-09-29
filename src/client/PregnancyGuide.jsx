@@ -140,26 +140,102 @@ const PregnancyGuide = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-blue-50/30 py-6 sm:py-8 md:py-12 px-3 sm:px-4 md:px-6 lg:px-8">
       <div className="max-w-[90rem] mx-auto">
-        {/* Header */}
-        <motion.div 
-          className="text-center mb-8 sm:mb-12 md:mb-16"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
+        {/* Header avec slider d'arrière-plan */}
+        <div className="relative overflow-hidden bg-gradient-to-br  from-teal-600 via-blue-600 to-indigo-700 rounded-2xl sm:rounded-3xl mb-8 sm:mb-12 md:mb-16 shadow-2xl">
+          {/* Image Slider Background */}
+          <div className="absolute inset-0 overflow-hidden rounded-2xl sm:rounded-3xl">
+            {[1, 2, 3, 4, 5, 6].map((imageNum, index) => (
+              <motion.div
+                key={imageNum}
+                className="absolute inset-0 w-full h-full"
+                initial={{ opacity: 0, scale: 1.1 }}
+                animate={{ 
+                  opacity: [0, 1, 1, 0],
+                  scale: [1.1, 1, 1, 1.05]
+                }}
+                transition={{
+                  duration: 4,
+                  delay: index * 4,
+                  repeat: Infinity,
+                  repeatDelay: 20, // 6 images * 4 seconds each - 4 seconds = 20 seconds delay
+                  ease: "easeInOut"
+                }}
+              >
+                <img 
+                  src={`/images/slider${imageNum}.jpg`}
+                  alt={`Guide grossesse ${imageNum}`}
+                  className="w-full h-full object-cover"
+                  loading={index === 0 ? "eager" : "lazy"}
+                />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Gradient overlay pour lisibilité */}
+          <div className="absolute inset-0 bg-gradient-to-br from-teal-600/70 via-blue-600/70 to-indigo-700/70"></div>
+          
+          {/* Effets d'arrière-plan animés */}
+          <div className="absolute inset-0 overflow-hidden">
+            <motion.div
+              className="absolute -top-10 -left-10 w-60 h-60 bg-white/5 rounded-full blur-3xl"
+              animate={{
+                x: [0, 80, 0],
+                y: [0, -40, 0],
+              }}
+              transition={{ duration: 15, repeat: Infinity }}
+            />
+            <motion.div
+              className="absolute -bottom-10 -right-10 w-80 h-80 bg-yellow-200/10 rounded-full blur-3xl"
+              animate={{
+                x: [0, -60, 0],
+                y: [0, 60, 0],
+              }}
+              transition={{ duration: 20, repeat: Infinity }}
+            />
+          </div>
+
+          {/* Indicateurs de slider */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+            {[1, 2, 3, 4, 5, 6].map((_, index) => (
+              <motion.div
+                key={index}
+                className="w-2 h-2 bg-white/40 rounded-full"
+                animate={{
+                  backgroundColor: ["rgba(255,255,255,0.4)", "rgba(255,255,255,1)", "rgba(255,255,255,1)", "rgba(255,255,255,0.4)"],
+                  scale: [1, 1.3, 1.3, 1]
+                }}
+                transition={{
+                  duration: 4,
+                  delay: index * 4,
+                  repeat: Infinity,
+                  repeatDelay: 20,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Contenu du header */}
           <motion.div 
-            className="inline-flex items-center justify-center w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full mb-4 sm:mb-5 md:mb-6"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="relative z-10 text-center py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
           >
-            <BookOpen className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-white" />
+            <motion.div 
+              className="inline-flex items-center justify-center w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-white/20 backdrop-blur-sm rounded-full mb-4 sm:mb-5 md:mb-6 border border-white/30 shadow-2xl"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            >
+              <BookOpen className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-white" />
+            </motion.div>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 px-2 leading-tight drop-shadow-lg">
+              Guide Complet de Grossesse
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-4xl mx-auto px-2 leading-relaxed drop-shadow">
+              Découvrez chaque étape de votre grossesse avec des conseils pratiques et des informations essentielles
+            </p>
           </motion.div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent mb-3 sm:mb-4 px-2">
-            Guide Complet de Grossesse
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-4xl mx-auto px-2 leading-relaxed">
-            Découvrez chaque étape de votre grossesse avec des conseils pratiques et des informations essentielles
-          </p>
-        </motion.div>
+        </div>
 
         {/* Guide Sections */}
         <div className="space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-20">

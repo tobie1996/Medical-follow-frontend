@@ -44,6 +44,7 @@ const MultiStepForm = () => {
     // Étape 4: Préférences de consultation
     preferredDate: '',
     preferredTime: '',
+    hospital: '',
     emergencyContact: '',
     emergencyPhone: '',
     notes: ''
@@ -108,6 +109,7 @@ const MultiStepForm = () => {
     if (step === 4) {
       if (!formData.preferredDate) newErrors.preferredDate = "La date préférée est requise";
       if (!formData.preferredTime) newErrors.preferredTime = "L'heure préférée est requise";
+      if (!formData.hospital) newErrors.hospital = "La sélection de l'hôpital est requise";
       if (!formData.emergencyContact.trim()) newErrors.emergencyContact = "Le contact d'urgence est requis";
       if (!formData.emergencyPhone.trim()) newErrors.emergencyPhone = "Le téléphone d'urgence est requis";
     }
