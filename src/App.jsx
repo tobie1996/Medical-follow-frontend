@@ -7,6 +7,7 @@ import Register from './client/auth/Register';
 import MultiStepForm from './client/Consultation/Multi-step Form';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import Contact from './client/Contact';
 import PregnancyGuide from './client/PregnancyGuide';
 import Profil from './client/Profil';
@@ -14,6 +15,7 @@ import Profil from './client/Profil';
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

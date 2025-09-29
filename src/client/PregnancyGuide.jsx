@@ -397,7 +397,7 @@ const PregnancyGuide = () => {
           viewport={{ once: true }}
           className="mt-8 sm:mt-12 md:mt-16 lg:mt-20 text-center"
         >
-          <div className="bg-gradient-to-r from-pink-500 to-rose-500 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 text-white">
+          <div className="bg-gradient-to-r  from-teal-600 via-blue-600 to-indigo-700 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 text-white">
             <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight">
               Un accompagnement personnalisé
             </h3>
@@ -406,10 +406,10 @@ const PregnancyGuide = () => {
               avec des conseils adaptés à votre situation.
             </p>
             <motion.button
-              className="bg-white text-pink-600 px-6 sm:px-8 md:px-12 py-3 sm:py-4 rounded-lg sm:rounded-xl font-bold text-sm sm:text-base md:text-lg hover:bg-gray-100 transition-all shadow-lg"
+              className="bg-white text-teal-600 px-6 sm:px-8 md:px-12 py-3 sm:py-4 rounded-lg sm:rounded-xl font-bold text-sm sm:text-base md:text-lg hover:bg-gray-100 transition-all shadow-lg"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => window.location.href = '/contact'}
+              onClick={() => window.location.href = '/rendez-vous'}
             >
               Prendre rendez-vous
             </motion.button>

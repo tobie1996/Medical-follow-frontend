@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Baby, Phone, Mail, MapPin, Clock, Facebook, Twitter, Instagram, Youtube, Heart, Shield, BookOpen, Calendar } from 'lucide-react';
 
 const Footer = () => {
@@ -43,28 +44,28 @@ const Footer = () => {
             <h4 className="text-xl font-semibold mb-6 text-teal-400">Navigation</h4>
             <ul className="space-y-4">
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors flex items-center space-x-3 text-base">
+                <Link to="/rendez-vous" className="text-gray-400 hover:text-white transition-colors flex items-center space-x-3 text-base">
                   <Calendar className="w-5 h-5" />
-                  <span>Mes Rendez-vous</span>
-                </a>
+                  <span>Prendre Rendez-vous</span>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors flex items-center space-x-3 text-base">
+                <Link to="/pregnancyguide" className="text-gray-400 hover:text-white transition-colors flex items-center space-x-3 text-base">
                   <BookOpen className="w-5 h-5" />
                   <span>Guide de Grossesse</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors flex items-center space-x-3 text-base">
+                <Link to="/profil" className="text-gray-400 hover:text-white transition-colors flex items-center space-x-3 text-base">
                   <Heart className="w-5 h-5" />
-                  <span>Suivi Médical</span>
-                </a>
+                  <span>Mon Profil</span>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors flex items-center space-x-3 text-base">
+                <Link to="/contact" className="text-gray-400 hover:text-white transition-colors flex items-center space-x-3 text-base">
                   <Shield className="w-5 h-5" />
-                  <span>Sécurité des Données</span>
-                </a>
+                  <span>Contact</span>
+                </Link>
               </li>
             </ul>
           </div>
@@ -130,9 +131,9 @@ const Footer = () => {
             <p className="text-gray-100 mb-6 text-base">
               Documentation structurée pour votre entretien et la préparation de la naissance de votre bébé
             </p>
-            <button className="bg-white text-teal-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
+            <Link to="/pregnancyguide" className="bg-white text-teal-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors inline-block">
               Consulter le Guide
-            </button>
+            </Link>
           </div>
         </div>
       </div>

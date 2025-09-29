@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   User, 
@@ -141,6 +141,11 @@ const Profil = () => {
       }
     }));
   };
+
+  // Effet pour remonter en haut de la page lors du changement de section
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [activeSection]);
 
   const renderSection = () => {
     switch (activeSection) {
