@@ -105,8 +105,8 @@ const Header = () => {
               <Baby className="w-8 h-8 md:w-10 md:h-10 text-white" />
             </motion.div>
             <div>
-              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 my-2 md:my-4">PrenaCare</h1>
-              <p className="text-xs md:text-sm lg:text-base text-gray-500">Consultation Prénatale</p>
+              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 ">PrenaCare</h1>
+              <span className="text-xs md:text-sm lg:text-base text-gray-500">Consultation Prénatale</span>
             </div>
           </motion.div>
 
