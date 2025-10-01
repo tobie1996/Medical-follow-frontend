@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle, Baby, Heart, Phone } from 'lucide-react';
 
 const SuccessScreen = () => {
+  // Scroll vers le haut quand le composant SuccessScreen se monte
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }, []);
+
   const successVariants = {
     initial: { scale: 0, rotate: -180 },
     animate: { 
@@ -109,7 +118,7 @@ const SuccessScreen = () => {
         </motion.div>
 
         <motion.h2 
-          className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3 md:mb-4 leading-tight"
+          className="text-2xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent mb-3 md:mb-4 leading-tight"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}

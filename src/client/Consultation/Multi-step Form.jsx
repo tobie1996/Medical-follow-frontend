@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { User, Calendar, Heart, Stethoscope, Baby } from 'lucide-react';
 
@@ -54,33 +54,42 @@ const MultiStepForm = () => {
 
   const totalSteps = 4;
 
+  // Fonction pour faire défiler vers le haut à chaque changement d'étape
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth' // Animation douce pour une meilleure UX
+    });
+  }, [currentStep]);
+
   const steps = [
     {
       id: 1,
       title: "Informations Personnelles",
       icon: User,
-      color: "from-teal-500 to-cyan-600",
+      color: "from-teal-500 to-blue-600",
       illustration: "👤"
     },
     {
       id: 2,
       title: "Antécédents Médicaux",
       icon: Stethoscope,
-      color: "from-blue-500 to-indigo-600",
+      color: "from-teal-500 to-blue-600",
       illustration: "🏥"
     },
     {
       id: 3,
       title: "Informations de Grossesse",
       icon: Heart,
-      color: "from-purple-500 to-pink-600",
+      color: "from-teal-500 to-blue-600",
       illustration: "💝"
     },
     {
       id: 4,
       title: "Rendez-vous",
       icon: Calendar,
-      color: "from-orange-500 to-red-500",
+      color: "from-teal-500 to-blue-600",
       illustration: "📅"
     }
   ];
@@ -88,31 +97,16 @@ const MultiStepForm = () => {
   const validateStep = (step) => {
     const newErrors = {};
 
+    // Tous les champs sont maintenant optionnels
+    // Validation uniquement du format email si renseigné
     if (step === 1) {
-      if (!formData.fullName.trim()) newErrors.fullName = "Le nom complet est requis";
-      if (!formData.birthDate) newErrors.birthDate = "La date de naissance est requise";
-      if (!formData.address.trim()) newErrors.address = "L'adresse est requise";
-      if (!formData.phone.trim()) newErrors.phone = "Le téléphone est requis";
       if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
         newErrors.email = "L'email n'est pas valide";
       }
     }
 
-    if (step === 2) {
-      if (!formData.bloodType) newErrors.bloodType = "Le groupe sanguin est requis";
-    }
-
-    if (step === 3) {
-      if (!formData.lastPeriodDate) newErrors.lastPeriodDate = "La date des dernières règles est requise";
-    }
-
-    if (step === 4) {
-      if (!formData.preferredDate) newErrors.preferredDate = "La date préférée est requise";
-      if (!formData.preferredTime) newErrors.preferredTime = "L'heure préférée est requise";
-      if (!formData.hospital) newErrors.hospital = "La sélection de l'hôpital est requise";
-      if (!formData.emergencyContact.trim()) newErrors.emergencyContact = "Le contact d'urgence est requis";
-      if (!formData.emergencyPhone.trim()) newErrors.emergencyPhone = "Le téléphone d'urgence est requis";
-    }
+    // Aucune validation obligatoire pour les autres étapes
+    // Les utilisateurs peuvent passer même avec des champs vides
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -137,19 +131,32 @@ const MultiStepForm = () => {
   const handleNext = () => {
     if (validateStep(currentStep) && currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
+      // Le scroll sera automatiquement géré par useEffect
     }
   };
 
   const handlePrevious = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
+      // Le scroll sera automatiquement géré par useEffect
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateStep(currentStep)) {
-      setIsSubmitted(true);
+      // Scroll vers le haut avant d'afficher la page de succès
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+      
+      // Petite temporisation pour permettre le scroll avant de changer l'état
+      setTimeout(() => {
+        setIsSubmitted(true);
+      }, 300);
+      
       // Ici vous pouvez ajouter l'envoi des données vers votre API
       console.log('Données du formulaire:', formData);
     }
