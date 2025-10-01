@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { 
+  Home, Users, Calendar, Pill, Baby, Hospital, Bell, Search, Plus, 
+  Eye, Edit, Trash2, LogOut, X, Menu 
+} from 'lucide-react';
+import { 
   LoginForm, 
   Header, 
   Sidebar, 
@@ -16,9 +20,9 @@ export default function AdminDashboard() {
   
   // États pour les données
   const [patients, setPatients] = useState([
-    { id: 1, nom: 'Ndongo Marie', age: 28, telephone: '+237 678 901 234', derniereVisite: '2024-09-15', statut: 'Enceinte - 6 mois' },
-    { id: 2, nom: 'Essomba Grace', age: 32, telephone: '+237 678 901 235', derniereVisite: '2024-09-20', statut: 'Suivi post-natal' },
-    { id: 3, nom: 'Mballa Sylvie', age: 25, telephone: '+237 678 901 236', derniereVisite: '2024-09-22', statut: 'Enceinte - 3 mois' },
+    { id: 1, nom: 'Ndongo Marie', age: 28, telephone: '+237 678 901 234', derniereVisite: '2024-09-15', statut: 'Enceinte - 6 mois', niveauCPN: 'CPN3' },
+    { id: 2, nom: 'Essomba Grace', age: 32, telephone: '+237 678 901 235', derniereVisite: '2024-09-20', statut: 'Suivi post-natal', niveauCPN: 'CPN4' },
+    { id: 3, nom: 'Mballa Sylvie', age: 25, telephone: '+237 678 901 236', derniereVisite: '2024-09-22', statut: 'Enceinte - 3 mois', niveauCPN: 'CPN1' },
   ]);
 
   const [rendezvous, setRendezvous] = useState([
@@ -37,9 +41,10 @@ export default function AdminDashboard() {
     { id: 2, patient: 'Mballa Sylvie', dateVisite: '2024-09-22', semaines: 12, poids: '58 kg', tension: '115/75', remarques: 'Début de grossesse normal' },
   ]);
 
-  const [annonces, setAnnonces] = useState([
-    { id: 1, titre: 'Campagne de vaccination', contenu: 'Vaccination gratuite pour tous les nourrissons du 10 au 15 octobre.', date: '2024-09-25', type: 'info' },
-    { id: 2, titre: 'Nouvelle sage-femme', contenu: 'Nous accueillons Dr. Atangana à notre équipe.', date: '2024-09-20', type: 'news' },
+  const [hopitaux, setHopitaux] = useState([
+    { id: 1, nom: 'Centre Médical Mère-Enfant Yaoundé', adresse: 'Avenue Kennedy, Yaoundé', telephone: '+237 222 345 678', type: 'Privé', services: 'Maternité, Pédiatrie, Gynécologie' },
+    { id: 2, nom: 'Hôpital Central de Yaoundé', adresse: 'Centre-ville, Yaoundé', telephone: '+237 222 234 567', type: 'Public', services: 'Maternité, Urgences' },
+    { id: 3, nom: 'Clinique de la Femme et de lEnfant', adresse: 'Bastos, Yaoundé', telephone: '+237 222 456 789', type: 'Privé', services: 'Maternité, Gynécologie, Échographie' },
   ]);
 
   const [loginData, setLoginData] = useState({ email: '', password: '' });
@@ -71,7 +76,7 @@ export default function AdminDashboard() {
 
   // Modal générique
   const Modal = ({ onClose, children }) => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0  flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div className="p-6">
           <div className="flex justify-between items-center mb-4">
@@ -157,7 +162,7 @@ export default function AdminDashboard() {
             { id: 'rendezvous', icon: Calendar, label: 'Rendez-vous' },
             { id: 'prescriptions', icon: Pill, label: 'Prescriptions' },
             { id: 'prenatales', icon: Baby, label: 'Visites prénatales' },
-            { id: 'annonces', icon: Bell, label: 'Annonces' },
+            { id: 'hopitaux', icon: Hospital, label: 'Hôpitaux' },
           ].map((item) => (
             <button
               key={item.id}
@@ -190,7 +195,7 @@ export default function AdminDashboard() {
             {activeSection === 'rendezvous' && 'Gestion des Rendez-vous'}
             {activeSection === 'prescriptions' && 'Gestion des Prescriptions'}
             {activeSection === 'prenatales' && 'Visites Prénatales'}
-            {activeSection === 'annonces' && 'Annonces & Informations'}
+            {activeSection === 'hopitaux' && 'Gestion des Hôpitaux'}
           </h1>
         </header>
 
@@ -198,7 +203,7 @@ export default function AdminDashboard() {
           {/* Dashboard - Vue d'ensemble */}
           {activeSection === 'dashboard' && (
             <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                 <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-pink-500">
                   <div className="flex items-center justify-between">
                     <div>
@@ -238,6 +243,16 @@ export default function AdminDashboard() {
                     <Baby size={40} className="text-green-500" />
                   </div>
                 </div>
+                
+                <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-teal-500">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-gray-600 text-sm">Hôpitaux</p>
+                      <p className="text-3xl font-bold text-gray-800">{hopitaux.length}</p>
+                    </div>
+                    <Hospital size={40} className="text-teal-500" />
+                  </div>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -260,13 +275,24 @@ export default function AdminDashboard() {
                 </div>
 
                 <div className="bg-white p-6 rounded-lg shadow-md">
-                  <h3 className="text-lg font-semibold mb-4 text-gray-800">Dernières annonces</h3>
+                  <h3 className="text-lg font-semibold mb-4 text-gray-800">Hôpitaux partenaires</h3>
                   <div className="space-y-3">
-                    {annonces.slice(0, 3).map((annonce) => (
-                      <div key={annonce.id} className="p-3 bg-gray-50 rounded-lg">
-                        <p className="font-medium text-gray-800">{annonce.titre}</p>
-                        <p className="text-sm text-gray-600 mt-1">{annonce.contenu}</p>
-                        <p className="text-xs text-gray-500 mt-2">{annonce.date}</p>
+                    {hopitaux.slice(0, 3).map((hopital) => (
+                      <div key={hopital.id} className="p-3 bg-gray-50 rounded-lg">
+                        <div className="flex items-center justify-between">
+                          <div className="flex-1">
+                            <p className="font-medium text-gray-800">{hopital.nom}</p>
+                            <p className="text-sm text-gray-600 mt-1">{hopital.adresse}</p>
+                            <div className="flex items-center gap-2 mt-2">
+                              <span className={`px-2 py-1 text-xs rounded-full ${
+                                hopital.type === 'Privé' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'
+                              }`}>
+                                {hopital.type}
+                              </span>
+                              <p className="text-xs text-gray-500">{hopital.telephone}</p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -305,6 +331,7 @@ export default function AdminDashboard() {
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Téléphone</th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dernière visite</th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Niveau CPN</th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                     </tr>
                   </thead>
@@ -319,6 +346,15 @@ export default function AdminDashboard() {
                           <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                             {patient.statut}
                           </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {patient.niveauCPN ? (
+                            <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                              {patient.niveauCPN}
+                            </span>
+                          ) : (
+                            <span className="text-gray-400">Non défini</span>
+                          )}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           <div className="flex space-x-2">
@@ -486,43 +522,64 @@ export default function AdminDashboard() {
             </div>
           )}
 
-          {/* Annonces */}
-          {activeSection === 'annonces' && (
+          {/* Hôpitaux */}
+          {activeSection === 'hopitaux' && (
             <div className="bg-white rounded-lg shadow-md">
               <div className="p-6 border-b flex justify-between items-center">
-                <h3 className="text-lg font-semibold text-gray-800">Gestion des annonces</h3>
+                <div className="flex items-center space-x-4">
+                  <Search className="text-gray-400" size={20} />
+                  <input
+                    type="text"
+                    placeholder="Rechercher un hôpital..."
+                    className="border-none focus:outline-none text-gray-700"
+                  />
+                </div>
                 <button
-                  onClick={() => openModal('Annonce')}
-                  className="flex items-center space-x-2 bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition"
+                  onClick={() => openModal('Hôpital')}
+                  className="flex items-center space-x-2 bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition"
                 >
                   <Plus size={20} />
-                  <span>Nouvelle Annonce</span>
+                  <span>Nouvel Hôpital</span>
                 </button>
               </div>
               
-              <div className="p-6 space-y-4">
-                {annonces.map((annonce) => (
-                  <div key={annonce.id} className="border rounded-lg p-4 hover:shadow-md transition">
-                    <div className="flex justify-between items-start">
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-3 mb-2">
-                          <h4 className="text-lg font-semibold text-gray-800">{annonce.titre}</h4>
-                          <span className={`px-2 py-1 text-xs rounded-full ${
-                            annonce.type === 'info' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Adresse</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Téléphone</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Services</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {hopitaux.map((hopital) => (
+                      <tr key={hopital.id} className="hover:bg-gray-50">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{hopital.nom}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{hopital.adresse}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{hopital.telephone}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                            hopital.type === 'Privé' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'
                           }`}>
-                            {annonce.type === 'info' ? 'Information' : 'Nouveauté'}
+                            {hopital.type}
                           </span>
-                        </div>
-                        <p className="text-gray-600 mb-2">{annonce.contenu}</p>
-                        <p className="text-sm text-gray-500">Publié le {annonce.date}</p>
-                      </div>
-                      <div className="flex space-x-2 ml-4">
-                        <button onClick={() => openModal('Annonce', annonce)} className="text-green-600 hover:text-green-800"><Edit size={20} /></button>
-                        <button className="text-red-600 hover:text-red-800"><Trash2 size={20} /></button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{hopital.services}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <div className="flex space-x-2">
+                            <button className="text-blue-600 hover:text-blue-800"><Eye size={18} /></button>
+                            <button onClick={() => openModal('Hôpital', hopital)} className="text-green-600 hover:text-green-800"><Edit size={18} /></button>
+                            <button className="text-red-600 hover:text-red-800"><Trash2 size={18} /></button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           )}
@@ -830,47 +887,60 @@ export default function AdminDashboard() {
             </form>
           )}
 
-          {modalType === 'Annonce' && (
+          {modalType === 'Hôpital' && (
             <form className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Titre de l'annonce</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Nom de l'hôpital</label>
                 <input
                   type="text"
-                  defaultValue={currentItem?.titre || ''}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                  placeholder="Ex: Campagne de vaccination"
+                  defaultValue={currentItem?.nom || ''}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  placeholder="Ex: Centre Médical Mère-Enfant"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Type d'annonce</label>
-                <select
-                  defaultValue={currentItem?.type || ''}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                >
-                  <option value="info">Information</option>
-                  <option value="news">Nouveauté</option>
-                  <option value="alert">Alerte</option>
-                </select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Contenu</label>
-                <textarea
-                  defaultValue={currentItem?.contenu || ''}
-                  rows="4"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                  placeholder="Contenu détaillé de l'annonce..."
-                ></textarea>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Date de publication</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Adresse</label>
                 <input
-                  type="date"
-                  defaultValue={currentItem?.date || ''}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  type="text"
+                  defaultValue={currentItem?.adresse || ''}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  placeholder="Ex: Avenue Kennedy, Yaoundé"
                 />
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
+                  <input
+                    type="tel"
+                    defaultValue={currentItem?.telephone || ''}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    placeholder="+237 222 XXX XXX"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                  <select
+                    defaultValue={currentItem?.type || ''}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  >
+                    <option value="">Sélectionner un type</option>
+                    <option value="Public">Public</option>
+                    <option value="Privé">Privé</option>
+                    <option value="Confessionnel">Confessionnel</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Services offerts</label>
+                <textarea
+                  defaultValue={currentItem?.services || ''}
+                  rows="3"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  placeholder="Ex: Maternité, Pédiatrie, Gynécologie, Échographie..."
+                ></textarea>
               </div>
               
               <div className="flex justify-end space-x-3 mt-6">
@@ -883,9 +953,9 @@ export default function AdminDashboard() {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition"
+                  className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition"
                 >
-                  {currentItem ? 'Mettre à jour' : 'Publier'}
+                  {currentItem ? 'Mettre à jour' : 'Ajouter'}
                 </button>
               </div>
             </form>

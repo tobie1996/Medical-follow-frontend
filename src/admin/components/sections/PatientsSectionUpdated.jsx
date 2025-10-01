@@ -24,7 +24,8 @@ const PatientsSection = ({ patients = [], openModal }) => {
       telephone: '+237 6XX XXX XXX',
       statut: 'Enceinte',
       grossesseSemaine: 24,
-      dernierRdv: '15/01/2024'
+      dernierRdv: '15/01/2024',
+      niveauCPN: 'CPN3'
     },
     {
       id: 2,
@@ -33,7 +34,8 @@ const PatientsSection = ({ patients = [], openModal }) => {
       telephone: '+237 6XX XXX XXX',
       statut: 'Post-partum',
       grossesseSemaine: null,
-      dernierRdv: '10/01/2024'
+      dernierRdv: '10/01/2024',
+      niveauCPN: 'CPN4'
     },
     {
       id: 3,
@@ -42,7 +44,8 @@ const PatientsSection = ({ patients = [], openModal }) => {
       telephone: '+237 6XX XXX XXX',
       statut: 'Enceinte',
       grossesseSemaine: 16,
-      dernierRdv: '20/01/2024'
+      dernierRdv: '20/01/2024',
+      niveauCPN: 'CPN2'
     }
   ];
 
@@ -152,6 +155,9 @@ const PatientsSection = ({ patients = [], openModal }) => {
                   Grossesse
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Niveau CPN
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Dernier RDV
                 </th>
                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -180,6 +186,15 @@ const PatientsSection = ({ patients = [], openModal }) => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {patient.grossesseSemaine ? `${patient.grossesseSemaine} semaines` : 'N/A'}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {patient.niveauCPN ? (
+                      <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                        {patient.niveauCPN}
+                      </span>
+                    ) : (
+                      <span className="text-gray-400">Non défini</span>
+                    )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {patient.dernierRdv}

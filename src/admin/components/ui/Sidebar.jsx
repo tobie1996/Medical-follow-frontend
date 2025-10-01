@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Users, Calendar, FileText, Pill, Bell, LogOut, Menu, X, BarChart3 } from 'lucide-react';
+import { Home, Users, Calendar, FileText, Hospital, LogOut, Menu, X, BarChart3 } from 'lucide-react';
 
 const Sidebar = ({ 
   sidebarOpen, 
@@ -13,9 +13,8 @@ const Sidebar = ({
     { id: 'patients', label: 'Patients', icon: Users },
     { id: 'rendezvous', label: 'Rendez-vous', icon: Calendar },
     { id: 'analytics', label: 'Analyses & Statistiques', icon: BarChart3 },
-    { id: 'prescriptions', label: 'Prescriptions', icon: Pill },
     { id: 'visites', label: 'Visites prénatales', icon: FileText },
-    { id: 'annonces', label: 'Annonces', icon: Bell },
+    { id: 'hopitaux', label: 'Hôpitaux', icon: Hospital },
   ];
 
   return (

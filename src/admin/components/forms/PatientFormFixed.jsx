@@ -364,7 +364,7 @@ const PatientForm = ({ patient, onSubmit, onCancel }) => {
         </motion.button>
         <motion.button
           type="submit"
-          className="px-6 py-3 bg-gradient-to-r from-teal-600 via-blue-600 to-indigo-700 text-white rounded-lg hover:from-teal-700 hover:via-blue-700 hover:to-indigo-800 transition-all font-medium shadow-lg"
+          className="px-6 py-3 bg-gradient-to-r from-teal-600 via-teal-600 to-teal-700 text-white rounded-lg hover:from-teal-700 hover:via-teal-700 hover:to-teal-800 transition-all font-medium shadow-lg"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Users, Calendar, FileText, Bell } from 'lucide-react';
 
-const DashboardSection = ({ patients, rendezvous, prescriptions, annonces }) => {
+const DashboardSection = ({ patients, rendezvous, visitesPrenatales, annonces }) => {
   const stats = [
     {
       title: 'Total Patients',
@@ -19,7 +19,7 @@ const DashboardSection = ({ patients, rendezvous, prescriptions, annonces }) => 
     },
     {
       title: 'Visites Prénatales',
-      value: prescriptions.length,
+      value: visitesPrenatales.length,
       icon: FileText,
       color: 'bg-indigo-600',
       bgColor: 'bg-indigo-50'

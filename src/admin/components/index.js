@@ -15,3 +15,4 @@ export { default as DashboardSection } from './sections/DashboardSection';
 export { default as PatientsSection } from './sections/PatientsSectionUpdated';
 export { default as RendezVousSection } from './sections/RendezVousSectionUpdated';
 export { default as AnalyticsSection } from './sections/AnalyticsSection';
+export { default as HopitauxSection } from './sections/HopitauxSection';

@@ -7,7 +7,8 @@ import {
   DashboardSection,
   PatientsSection,
   RendezVousSection,
-  AnalyticsSection
+  AnalyticsSection,
+  HopitauxSection
 } from './components';
 
 export default function AdminDashboard() {
@@ -17,20 +18,15 @@ export default function AdminDashboard() {
   
   // États pour les données
   const [patients, setPatients] = useState([
-    { id: 1, nom: 'Ndongo Marie', age: 28, telephone: '+237 678 901 234', derniereVisite: '2024-09-15', statut: 'Enceinte - 6 mois' },
-    { id: 2, nom: 'Essomba Grace', age: 32, telephone: '+237 678 901 235', derniereVisite: '2024-09-20', statut: 'Suivi post-natal' },
-    { id: 3, nom: 'Mballa Sylvie', age: 25, telephone: '+237 678 901 236', derniereVisite: '2024-09-22', statut: 'Enceinte - 3 mois' },
+    { id: 1, nom: 'Ndongo Marie', age: 28, telephone: '+237 678 901 234', derniereVisite: '2024-09-15', statut: 'Enceinte - 6 mois', niveauCPN: 'CPN3' },
+    { id: 2, nom: 'Essomba Grace', age: 32, telephone: '+237 678 901 235', derniereVisite: '2024-09-20', statut: 'Suivi post-natal', niveauCPN: 'CPN4' },
+    { id: 3, nom: 'Mballa Sylvie', age: 25, telephone: '+237 678 901 236', derniereVisite: '2024-09-22', statut: 'Enceinte - 3 mois', niveauCPN: 'CPN1' },
   ]);
 
   const [rendezvous, setRendezvous] = useState([
     { id: 1, patient: 'Ndongo Marie', date: '2024-10-05', heure: '09:00', type: 'Consultation prénatale', statut: 'Confirmé' },
     { id: 2, patient: 'Essomba Grace', date: '2024-10-05', heure: '10:30', type: 'Vaccination bébé', statut: 'Confirmé' },
     { id: 3, patient: 'Mballa Sylvie', date: '2024-10-06', heure: '14:00', type: 'Échographie', statut: 'En attente' },
-  ]);
-
-  const [prescriptions, setPrescriptions] = useState([
-    { id: 1, patient: 'Ndongo Marie', date: '2024-09-15', medicaments: 'Fer + Acide folique', dosage: '1 comprimé/jour' },
-    { id: 2, patient: 'Essomba Grace', date: '2024-09-20', medicaments: 'Vitamines postnatales', dosage: '2 comprimés/jour' },
   ]);
 
   const [visitesPrenatales, setVisitesPrenatales] = useState([
@@ -94,7 +90,7 @@ export default function AdminDashboard() {
           <DashboardSection 
             patients={patients}
             rendezvous={rendezvous}
-            prescriptions={prescriptions}
+            visitesPrenatales={visitesPrenatales}
             annonces={annonces}
           />
         );
@@ -114,13 +110,6 @@ export default function AdminDashboard() {
         );
       case 'analytics':
         return <AnalyticsSection />;
-      case 'prescriptions':
-        return (
-          <div className="text-center py-20">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Section Prescriptions</h2>
-            <p className="text-gray-600">Cette section est en cours de développement</p>
-          </div>
-        );
       case 'visites':
         return (
           <div className="text-center py-20">
@@ -128,6 +117,8 @@ export default function AdminDashboard() {
             <p className="text-gray-600">Cette section est en cours de développement</p>
           </div>
         );
+      case 'hopitaux':
+        return <HopitauxSection />;
       case 'annonces':
         return (
           <div className="text-center py-20">
@@ -140,7 +131,7 @@ export default function AdminDashboard() {
           <DashboardSection 
             patients={patients}
             rendezvous={rendezvous}
-            prescriptions={prescriptions}
+            visitesPrenatales={visitesPrenatales}
             annonces={annonces}
           />
         );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { User, Calendar, Phone, MapPin, Heart, AlertCircle, FileText } from 'lucide-react';
+import { User, Calendar, Phone, MapPin, Heart, AlertCircle, FileText, Droplet, Stethoscope } from 'lucide-react';
 
 const PatientForm = ({ patient, onSubmit, onCancel }) => {
   const [formData, setFormData] = useState({
@@ -14,12 +14,14 @@ const PatientForm = ({ patient, onSubmit, onCancel }) => {
     urgenceContact: patient?.urgenceContact || '',
     urgenceTelephone: patient?.urgenceTelephone || '',
     groupeSanguin: patient?.groupeSanguin || '',
+    statut: patient?.statut || '',
     allergies: patient?.allergies || '',
     maladiesChroniques: patient?.maladiesChroniques || '',
     medicamentsActuels: patient?.medicamentsActuels || '',
     antecedentsMedicaux: patient?.antecedentsMedicaux || '',
     grossessesPrecedentes: patient?.grossessesPrecedentes || '',
     complications: patient?.complications || '',
+    niveauCPN: patient?.niveauCPN || '',
     notes: patient?.notes || ''
   });
 
@@ -185,6 +187,25 @@ const PatientForm = ({ patient, onSubmit, onCancel }) => {
               <option value="Suivi post-natal">Suivi post-natal</option>
             </select>
           </motion.div>
+
+          <motion.div variants={inputVariants} whileFocus="focus">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Niveau CPN
+            </label>
+            <select
+              name="niveauCPN"
+              value={formData.niveauCPN}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+            >
+              <option value="">Sélectionner un niveau</option>
+              <option value="CPN1">CPN1 - Première consultation</option>
+              <option value="CPN2">CPN2 - Deuxième consultation</option>
+              <option value="CPN3">CPN3 - Troisième consultation</option>
+              <option value="CPN4">CPN4 - Quatrième consultation</option>
+              <option value="CPN+">CPN+ - Consultation supplémentaire</option>
+            </select>
+          </motion.div>
         </div>
 
         <motion.div variants={inputVariants} whileFocus="focus" className="mt-4">
@@ -234,7 +255,7 @@ const PatientForm = ({ patient, onSubmit, onCancel }) => {
         </motion.button>
         <motion.button
           type="submit"
-          className="px-6 py-3 bg-gradient-to-r from-teal-600 via-blue-600 to-indigo-700 text-white rounded-lg hover:from-teal-700 hover:via-blue-700 hover:to-indigo-800 transition-all font-medium shadow-lg"
+          className="px-6 py-3 bg-gradient-to-r from-teal-600 via-teal-600 to-teal-700 text-white rounded-lg  transition-all font-medium shadow-lg"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
