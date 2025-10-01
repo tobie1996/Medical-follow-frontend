@@ -42,7 +42,7 @@ const NavigationButtons = ({
         <motion.button
           type="submit"
           onClick={onSubmit}
-          className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 md:px-12 py-3 md:py-4 rounded-xl font-bold text-sm md:text-lg hover:from-green-600 hover:to-emerald-600 transition-all shadow-lg order-1 sm:order-2"
+          className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-teal-600 to-teal-600 text-white px-8 md:px-12 py-3 md:py-4 rounded-xl font-bold text-sm md:text-lg hover:from-teal-700 hover:to-teal-700 transition-all shadow-lg order-1 sm:order-2"
           whileHover={{ scale: 1.02, y: -1 }}
           whileTap={{ scale: 0.98 }}
         >
