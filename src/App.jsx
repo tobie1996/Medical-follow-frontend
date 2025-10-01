@@ -11,23 +11,34 @@ import ScrollToTop from './components/ScrollToTop';
 import Contact from './client/Contact';
 import PregnancyGuide from './client/PregnancyGuide';
 import Profil from './client/Profil';
+import AdminDashboard from './admin/Dashboard';
 
 function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/rendez-vous" element={<MultiStepForm />} />
-        <Route path="/pregnancyguide" element={<PregnancyGuide />} />
-        <Route path="/profil" element={<Profil />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/consultation" element={<MultiStepForm />} />
+        {/* Route admin séparée */}
+        <Route path="/admin/*" element={<AdminDashboard />} />
+        
+        {/* Routes client avec Header et Footer */}
+        <Route path="/*" element={
+          <>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/rendez-vous" element={<MultiStepForm />} />
+              <Route path="/pregnancyguide" element={<PregnancyGuide />} />
+              <Route path="/profil" element={<Profil />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/consultation" element={<MultiStepForm />} />
+            </Routes>
+            <Footer />
+          </>
+        } />
       </Routes>
-      <Footer />
     </BrowserRouter>
   )
 }
