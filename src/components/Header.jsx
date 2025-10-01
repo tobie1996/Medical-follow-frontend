@@ -20,7 +20,7 @@ const Header = () => {
   // Navigation items avec leurs routes
   const navigationItems = [
     { icon: Home, label: "Accueil", path: "/" },
-    { icon: Calendar, label: "Mes Rendez-vous", path: "/rendez-vous" },
+    { icon: Calendar, label: "Consultation", path: "/rendez-vous" },
     { icon: BookOpen, label: "Guide de Grossesse", path: "/pregnancyguide" },
     { icon: User, label: "Mon Profil", path: "/profil" },
     { icon: Phone, label: "Contact", path: "/contact" }
