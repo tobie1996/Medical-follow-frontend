@@ -8,4 +8,15 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
+  // Assure-t-on que les routes sont gérées par React Router
+  server: {
+    historyApiFallback: true,
+  },
 })
