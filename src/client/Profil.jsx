@@ -190,7 +190,7 @@ const Profil = () => {
         <AnimatePresence>
           {isSidebarOpen && (
             <motion.div
-              className="fixed inset-0 bg-black bg-opacity-50 z-40"
+              className="fixed inset-0  z-30"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -276,7 +276,7 @@ const Profil = () => {
 
           {/* Contenu principal */}
           <motion.div 
-            className="flex-1 min-w-0"
+            className="flex-1 min-w-0 relative z-10"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
