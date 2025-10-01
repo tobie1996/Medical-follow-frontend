@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Heart, Baby, Shield, Users, TrendingUp, Calendar, CheckCircle, Phone, ArrowRight, Sparkles, Star } from 'lucide-react';
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
@@ -142,6 +145,7 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.9 }}
           >
             <motion.button 
+              onClick={() => navigate('/consultation')}
               className="group relative bg-white text-teal-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg shadow-2xl overflow-hidden w-full sm:w-auto"
               whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.98 }}
@@ -154,6 +158,7 @@ const Home = () => {
               </span>
             </motion.button>
             <motion.button 
+              onClick={() => navigate('/pregnancyguide')}
               className="group border-2 sm:border-3 border-white/50 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg backdrop-blur-sm hover:bg-white hover:text-teal-600 transition-all duration-300 w-full sm:w-auto"
               whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.98 }}
@@ -548,6 +553,7 @@ const Home = () => {
             viewport={{ once: true }}
           >
             <motion.button 
+              onClick={() => navigate('/consultation')}
               className="group relative bg-white text-teal-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg shadow-2xl overflow-hidden w-full sm:w-auto"
               variants={scaleIn}
               whileHover={{ 
@@ -559,12 +565,13 @@ const Home = () => {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-blue-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
               <span className="relative flex items-center justify-center gap-2 sm:gap-3">
-                <span className="hidden sm:inline">S'inscrire maintenant</span>
-                <span className="sm:hidden">S'inscrire</span>
+                <span className="hidden sm:inline">Commencer mon suivi</span>
+                <span className="sm:hidden">Commencer</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform" />
               </span>
             </motion.button>
             <motion.button 
+              onClick={() => navigate('/pregnancyguide')}
               className="group border-2 sm:border-3 border-white/60 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg backdrop-blur-sm hover:bg-white hover:text-teal-600 transition-all duration-300 w-full sm:w-auto"
               variants={scaleIn}
               whileHover={{ 
@@ -574,8 +581,7 @@ const Home = () => {
               whileTap={{ scale: 0.98 }}
             >
               <span className="flex items-center justify-center gap-2 sm:gap-3">
-                <Phone className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-12 transition-transform" />
-                Nous contacter
+                En savoir plus
               </span>
             </motion.button>
           </motion.div>
