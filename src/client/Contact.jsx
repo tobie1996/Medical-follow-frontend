@@ -185,7 +185,7 @@ const Contact = () => {
   );
 
   return (
-    <div className="mx-[15px] min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-12 px-4 sm:px-6 lg:px-8">
+  <div className="mx-[15px] min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50/30 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div 
@@ -194,13 +194,13 @@ const Contact = () => {
           animate={{ opacity: 1, y: 0 }}
         >
           <motion.div 
-            className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-teal-500 to-blue-500 rounded-full mb-6"
+            className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full mb-6"
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
             <Baby className="w-10 h-10 text-white" />
           </motion.div>
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-4">
             Trouvez la Clinique la Plus Proche
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -225,7 +225,7 @@ const Contact = () => {
                 <motion.button
                   onClick={getUserLocation}
                   disabled={isLocating}
-                  className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-teal-500 to-blue-500 text-white px-6 py-5 rounded-xl font-semibold hover:from-teal-600 hover:to-blue-600 transition-all shadow-lg"
+                  className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-green-500 text-white px-6 py-5 rounded-xl font-semibold hover:from-emerald-600 hover:to-green-600 transition-all shadow-lg"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -270,7 +270,7 @@ const Contact = () => {
                     
                     <motion.button
                       onClick={() => openGoogleMaps(nearestClinic)}
-                      className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 rounded-xl font-semibold hover:from-orange-600 hover:to-red-600 transition-all mt-4"
+                      className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-green-500 text-white py-3 rounded-xl font-semibold hover:from-emerald-600 hover:to-green-600 transition-all mt-4"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -287,7 +287,7 @@ const Contact = () => {
                 {clinicsData.map((clinic, index) => (
                   <motion.div
                     key={clinic.id}
-                    className="p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-teal-300 transition-all"
+                    className="p-4 bg-green-50 rounded-xl border border-green-200 hover:border-emerald-300 transition-all"
                     whileHover={{ scale: 1.01 }}
                   >
                     <div className="flex justify-between items-start">
@@ -298,7 +298,7 @@ const Contact = () => {
                       </div>
                       {clinics.find(c => c.id === clinic.id)?.distance && (
                         <div className="text-right">
-                          <span className="bg-teal-100 text-teal-800 px-2 py-1 rounded-full text-sm font-medium">
+                          <span className="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full text-sm font-medium">
                             {clinics.find(c => c.id === clinic.id).distance.toFixed(1)} km
                           </span>
                         </div>
@@ -335,7 +335,7 @@ const Contact = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-4 text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all"
+                      className="w-full px-4 py-4 text-lg border-2 border-green-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
                       placeholder="Votre nom"
                       required
                     />
@@ -350,7 +350,7 @@ const Contact = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-4 text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all"
+                      className="w-full px-4 py-4 text-lg border-2 border-green-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
                       placeholder="votre@email.com"
                       required
                     />
@@ -367,7 +367,7 @@ const Contact = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-4 text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all"
+                      className="w-full px-4 py-4 text-lg border-2 border-green-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
                       placeholder="+237 6XX XX XX XX"
                     />
                   </div>
@@ -380,7 +380,7 @@ const Contact = () => {
                       name="subject"
                       value={formData.subject}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-4 text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all"
+                      className="w-full px-4 py-4 text-lg border-2 border-green-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
                       required
                     >
                       <option value="">Sélectionnez un sujet</option>
@@ -402,7 +402,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     rows="6"
-                    className="w-full px-4 py-4 text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all"
+                    className="w-full px-4 py-4 text-lg border-2 border-green-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
                     placeholder="Décrivez votre demande en détail..."
                     required
                   />
@@ -410,7 +410,7 @@ const Contact = () => {
 
                 <motion.button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-teal-500 to-blue-500 text-white px-8 py-5 rounded-xl font-bold text-lg hover:from-teal-600 hover:to-blue-600 transition-all shadow-lg flex items-center justify-center gap-3"
+                  className="w-full bg-gradient-to-r from-emerald-500 to-green-500 text-white px-8 py-5 rounded-xl font-bold text-lg hover:from-emerald-600 hover:to-green-600 transition-all shadow-lg flex items-center justify-center gap-3"
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
