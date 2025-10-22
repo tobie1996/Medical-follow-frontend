@@ -24,7 +24,7 @@ function App() {
         {/* Routes client avec Header et Footer */}
         <Route path="/*" element={
           <>
-            <Header />
+            <Header className="hidden md:block" />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/rendez-vous" element={<MultiStepForm />} />

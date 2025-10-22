@@ -15,8 +15,8 @@ const PregnancyInfoStep = ({ formData, onChange, errors }) => {
           error={errors.lastPeriodDate}
           required
           icon={Calendar}
-          iconColor="text-purple-600"
-          focusColor="focus:ring-purple-500 focus:border-purple-500"
+          iconColor="text-teal-600"
+          focusColor="focus:ring-teal-500 focus:border-teal-500"
         />
 
         <FormInput
@@ -28,8 +28,8 @@ const PregnancyInfoStep = ({ formData, onChange, errors }) => {
           placeholder="0"
           min="0"
           icon={Baby}
-          iconColor="text-purple-600"
-          focusColor="focus:ring-purple-500 focus:border-purple-500"
+          iconColor="text-teal-600"
+          focusColor="focus:ring-teal-500 focus:border-teal-500"
         />
       </div>
 
@@ -41,8 +41,8 @@ const PregnancyInfoStep = ({ formData, onChange, errors }) => {
         onChange={onChange}
         placeholder="Si applicable, décrivez les complications..."
         icon={Heart}
-        iconColor="text-purple-600"
-        focusColor="focus:ring-purple-500 focus:border-purple-500"
+        iconColor="text-teal-600"
+        focusColor="focus:ring-teal-500 focus:border-teal-500"
         rows={3}
       />
 
@@ -53,8 +53,8 @@ const PregnancyInfoStep = ({ formData, onChange, errors }) => {
         value={formData.expectedDueDate}
         onChange={onChange}
         icon={Calendar}
-        iconColor="text-purple-600"
-        focusColor="focus:ring-purple-500 focus:border-purple-500"
+        iconColor="text-teal-600"
+        focusColor="focus:ring-teal-500 focus:border-teal-500"
       />
     </div>
   );

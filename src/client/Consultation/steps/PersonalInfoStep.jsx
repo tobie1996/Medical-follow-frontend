@@ -16,8 +16,8 @@ const PersonalInfoStep = ({ formData, onChange, errors }) => {
           placeholder="Entrez votre nom complet"
           required
           icon={User}
-          iconColor="text-teal-600"
-          focusColor="focus:ring-teal-500 focus:border-teal-500"
+          iconColor="text-emerald-600"
+          focusColor="focus:ring-emerald-500 focus:border-emerald-500"
         />
         
         <FormInput
@@ -29,8 +29,8 @@ const PersonalInfoStep = ({ formData, onChange, errors }) => {
           error={errors.birthDate}
           required
           icon={Calendar}
-          iconColor="text-teal-600"
-          focusColor="focus:ring-teal-500 focus:border-teal-500"
+          iconColor="text-emerald-600"
+          focusColor="focus:ring-emerald-500 focus:border-emerald-500"
         />
       </div>
 
@@ -44,8 +44,8 @@ const PersonalInfoStep = ({ formData, onChange, errors }) => {
         placeholder="Quartier, ville, région..."
         required
         icon={MapPin}
-        iconColor="text-teal-600"
-        focusColor="focus:ring-teal-500 focus:border-teal-500"
+        iconColor="text-emerald-600"
+        focusColor="focus:ring-emerald-500 focus:border-emerald-500"
         rows={3}
       />
 
@@ -60,8 +60,8 @@ const PersonalInfoStep = ({ formData, onChange, errors }) => {
           placeholder="+237 6XX XX XX XX"
           required
           icon={Phone}
-          iconColor="text-teal-600"
-          focusColor="focus:ring-teal-500 focus:border-teal-500"
+          iconColor="text-emerald-600"
+          focusColor="focus:ring-emerald-500 focus:border-emerald-500"
         />
 
         <FormInput
@@ -73,8 +73,8 @@ const PersonalInfoStep = ({ formData, onChange, errors }) => {
           error={errors.email}
           placeholder="votre.email@example.com"
           icon={Mail}
-          iconColor="text-teal-600"
-          focusColor="focus:ring-teal-500 focus:border-teal-500"
+          iconColor="text-emerald-600"
+          focusColor="focus:ring-emerald-500 focus:border-emerald-500"
         />
       </div>
     </div>

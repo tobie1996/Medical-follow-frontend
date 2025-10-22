@@ -98,7 +98,7 @@ const Header = () => {
             transition={{ duration: 0.5 }}
           >
             <motion.div 
-              className="bg-gradient-to-r from-teal-500 to-blue-500 p-2 md:p-3 rounded-lg"
+              className="bg-gradient-to-r from-emerald-500 to-green-500 p-2 md:p-3 rounded-lg"
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.6 }}
             >
@@ -132,8 +132,8 @@ const Header = () => {
                   onClick={() => handleItemClick(item.label)}
                   className={`flex flex-col items-center space-y-1 text-sm transition-colors py-2 px-3 rounded-lg ${
                     location.pathname === item.path
-                      ? 'text-teal-600 bg-teal-50 border-2 border-teal-200'
-                      : 'text-gray-700 hover:text-teal-600 hover:bg-gray-50'
+                      ? 'text-emerald-600 bg-emerald-50 border-2 border-emerald-200'
+                      : 'text-gray-700 hover:text-emerald-600 hover:bg-gray-50'
                   }`}
                 >
                   <item.icon className="w-6 h-6" />
@@ -163,10 +163,10 @@ const Header = () => {
                 <Link
                   to={item.path}
                   onClick={() => handleItemClick(item.label)}
-                  className={`flex items-center justify-center transition-colors py-3 px-3 rounded-lg relative group ${
+                  className={`flex items-center space-x-2 text-base transition-colors py-2 px-3 rounded-lg ${
                     location.pathname === item.path
-                      ? 'text-teal-600 bg-teal-50 border-2 border-teal-200'
-                      : 'text-gray-700 hover:text-teal-600 hover:bg-gray-50'
+                      ? 'text-emerald-600 bg-emerald-50 border-2 border-emerald-200'
+                      : 'text-gray-700 hover:text-emerald-600 hover:bg-gray-50'
                   }`}
                 >
                   <item.icon className="w-5 h-5" />
@@ -188,7 +188,7 @@ const Header = () => {
           >
             <Link to="/register">
               <motion.button 
-                className="flex items-center space-x-1 md:space-x-2 lg:space-x-3 bg-gradient-to-r from-teal-500 to-blue-500 text-white text-xs md:text-sm lg:text-base px-2 md:px-4 lg:px-6 py-2 lg:py-3 rounded-lg hover:from-teal-600 hover:to-blue-600 transition-colors shadow-lg"
+                className="flex items-center space-x-1 md:space-x-2 lg:space-x-3 bg-gradient-to-r from-emerald-500 to-green-500 text-white text-xs md:text-sm lg:text-base px-2 md:px-4 lg:px-6 py-2 lg:py-3 rounded-lg hover:from-emerald-600 hover:to-green-600 transition-colors shadow-lg"
                 variants={buttonVariants}
                 whileHover={{
                   scale: 1.05,
@@ -206,7 +206,7 @@ const Header = () => {
           <div className="md:hidden">
             <motion.button
               onClick={toggleMenu}
-              className="text-gray-700 hover:text-teal-600 transition-colors p-2"
+              className="text-gray-700 hover:text-emerald-600 transition-colors p-2"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -250,13 +250,13 @@ const Header = () => {
                   >
                     <Link
                       to={item.path}
-                      onClick={() => handleItemClick(item.label)}
-                      className={`flex items-center space-x-3 sm:space-x-4 text-sm sm:text-base transition-all duration-200 px-3 sm:px-4 py-2 sm:py-3 rounded-md ${
-                        location.pathname === item.path
-                          ? 'text-teal-600 bg-white border-l-4 border-teal-500 shadow-sm'
-                          : 'text-gray-700 hover:text-teal-600 hover:bg-white'
-                      }`}
-                    >
+                        onClick={() => handleItemClick(item.label)}
+                        className={`flex items-center space-x-3 sm:space-x-4 text-sm sm:text-base transition-all duration-200 px-3 sm:px-4 py-2 sm:py-3 rounded-md w-full ${
+                          location.pathname === item.path
+                          ? 'text-emerald-600 bg-white border-l-4 border-emerald-500 shadow-sm'
+                          : 'text-gray-700 hover:text-emerald-600 hover:bg-white'
+                        }`}
+                      >
                       <item.icon className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
                       <span className="whitespace-nowrap">{item.label}</span>
                     </Link>

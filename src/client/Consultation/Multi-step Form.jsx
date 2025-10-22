@@ -68,28 +68,28 @@ const MultiStepForm = () => {
       id: 1,
       title: "Informations Personnelles",
       icon: User,
-      color: "from-teal-500 to-blue-600",
+      color: "from-emerald-500 to-green-600",
       illustration: "👤"
     },
     {
       id: 2,
       title: "Antécédents Médicaux",
       icon: Stethoscope,
-      color: "from-teal-500 to-blue-600",
+      color: "from-emerald-500 to-green-600",
       illustration: "🏥"
     },
     {
       id: 3,
       title: "Informations de Grossesse",
       icon: Heart,
-      color: "from-teal-500 to-blue-600",
+      color: "from-emerald-500 to-green-600",
       illustration: "💝"
     },
     {
       id: 4,
       title: "Rendez-vous",
       icon: Calendar,
-      color: "from-teal-500 to-blue-600",
+      color: "from-emerald-500 to-green-600",
       illustration: "📅"
     }
   ];
@@ -223,7 +223,7 @@ const MultiStepForm = () => {
   }
 
   return (
-    <div className="mx-[10px] md:mx-[15px] min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-6 md:py-12 px-2 md:px-4 sm:px-6 lg:px-8">
+    <div className="mx-[10px] md:mx-[15px] min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50/30 py-6 md:py-12 px-2 md:px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <motion.div 
@@ -232,13 +232,13 @@ const MultiStepForm = () => {
           animate={{ opacity: 1, y: 0 }}
         >
           <motion.div 
-            className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-gradient-to-r from-teal-500 to-blue-500 rounded-full mb-4 md:mb-6"
+            className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full mb-4 md:mb-6"
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
             <Baby className="w-8 h-8 md:w-10 md:h-10 text-white" />
           </motion.div>
-          <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent mb-3 md:mb-4 leading-tight">
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-3 md:mb-4 leading-tight">
             Première Consultation Prénatale
           </h1>
           <p className="text-base md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-2">
@@ -296,7 +296,7 @@ const MultiStepForm = () => {
         >
           <p className="text-xs md:text-sm leading-relaxed">
             Vos informations sont sécurisées et confidentielles. 
-            <span className="text-teal-600 font-semibold"> Protégé par chiffrement SSL</span>
+            <span className="text-emerald-600 font-semibold"> Protégé par chiffrement SSL</span>
           </p>
         </motion.div>
       </div>

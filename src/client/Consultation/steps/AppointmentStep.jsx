@@ -37,8 +37,8 @@ const AppointmentStep = ({ formData, onChange, errors }) => {
           error={errors.preferredDate}
           required
           icon={Calendar}
-          iconColor="text-orange-600"
-          focusColor="focus:ring-orange-500 focus:border-orange-500"
+          iconColor="text-emerald-600"
+          focusColor="focus:ring-emerald-500 focus:border-emerald-500"
         />
 
         <FormInput
@@ -50,8 +50,8 @@ const AppointmentStep = ({ formData, onChange, errors }) => {
           error={errors.preferredTime}
           required
           icon={Calendar}
-          iconColor="text-orange-600"
-          focusColor="focus:ring-orange-500 focus:border-orange-500"
+          iconColor="text-emerald-600"
+          focusColor="focus:ring-emerald-500 focus:border-emerald-500"
           options={timeSlotOptions}
         />
 
@@ -64,8 +64,8 @@ const AppointmentStep = ({ formData, onChange, errors }) => {
           error={errors.hospital}
           required
           icon={Building2}
-          iconColor="text-orange-600"
-          focusColor="focus:ring-orange-500 focus:border-orange-500"
+          iconColor="text-emerald-600"
+          focusColor="focus:ring-emerald-500 focus:border-emerald-500"
           options={hospitalOptions}
           placeholder="Sélectionnez un hôpital"
         />
@@ -82,8 +82,8 @@ const AppointmentStep = ({ formData, onChange, errors }) => {
           placeholder="Nom du contact"
           required
           icon={User}
-          iconColor="text-orange-600"
-          focusColor="focus:ring-orange-500 focus:border-orange-500"
+          iconColor="text-emerald-600"
+          focusColor="focus:ring-emerald-500 focus:border-emerald-500"
         />
 
         <FormInput
@@ -96,8 +96,8 @@ const AppointmentStep = ({ formData, onChange, errors }) => {
           placeholder="+237 6XX XX XX XX"
           required
           icon={Phone}
-          iconColor="text-orange-600"
-          focusColor="focus:ring-orange-500 focus:border-orange-500"
+          iconColor="text-emerald-600"
+          focusColor="focus:ring-emerald-500 focus:border-emerald-500"
         />
       </div>
 
@@ -109,8 +109,8 @@ const AppointmentStep = ({ formData, onChange, errors }) => {
         onChange={onChange}
         placeholder="Informations supplémentaires, questions, préoccupations..."
         icon={AlertCircle}
-        iconColor="text-orange-600"
-        focusColor="focus:ring-orange-500 focus:border-orange-500"
+        iconColor="text-emerald-600"
+        focusColor="focus:ring-emerald-500 focus:border-emerald-500"
         rows={4}
       />
     </div>

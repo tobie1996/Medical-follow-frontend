@@ -138,10 +138,10 @@ const PregnancyGuide = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-blue-50/30 py-6 sm:py-8 md:py-12 px-3 sm:px-4 md:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50/30 py-6 sm:py-8 md:py-12 px-3 sm:px-4 md:px-6 lg:px-8">
       <div className="max-w-[90rem] mx-auto">
         {/* Header avec slider d'arrière-plan */}
-        <div className="relative overflow-hidden bg-gradient-to-br  from-teal-600 via-blue-600 to-indigo-700 rounded-2xl sm:rounded-3xl mb-8 sm:mb-12 md:mb-16 shadow-2xl">
+        <div className="relative overflow-hidden bg-gradient-to-br from-emerald-600 via-green-600 to-teal-700 rounded-2xl sm:rounded-3xl mb-8 sm:mb-12 md:mb-16 shadow-2xl">
           {/* Image Slider Background */}
           <div className="absolute inset-0 overflow-hidden rounded-2xl sm:rounded-3xl">
             {[1, 2, 3, 4, 5, 6].map((imageNum, index) => (
@@ -172,7 +172,7 @@ const PregnancyGuide = () => {
           </div>
 
           {/* Gradient overlay pour lisibilité */}
-          <div className="absolute inset-0 bg-gradient-to-br from-teal-600/70 via-blue-600/70 to-indigo-700/70"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/70 via-green-600/70 to-teal-700/70"></div>
           
           {/* Effets d'arrière-plan animés */}
           <div className="absolute inset-0 overflow-hidden">
@@ -185,7 +185,7 @@ const PregnancyGuide = () => {
               transition={{ duration: 15, repeat: Infinity }}
             />
             <motion.div
-              className="absolute -bottom-10 -right-10 w-80 h-80 bg-yellow-200/10 rounded-full blur-3xl"
+              className="absolute -bottom-10 -right-10 w-80 h-80 bg-green-200/10 rounded-full blur-3xl"
               animate={{
                 x: [0, -60, 0],
                 y: [0, 60, 0],
@@ -299,7 +299,7 @@ const PregnancyGuide = () => {
                         className="flex-shrink-0 mt-0.5 sm:mt-0"
                       >
                         {openItems[question.id] ? (
-                          <ChevronUp className="w-5 h-5 sm:w-6 sm:h-6 text-pink-500" />
+                          <ChevronUp className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-500" />
                         ) : (
                           <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400" />
                         )}
@@ -338,12 +338,12 @@ const PregnancyGuide = () => {
 
                           {/* Important */}
                           {question.important && (
-                            <div className="p-3 sm:p-4 bg-blue-50 rounded-lg sm:rounded-xl">
+                            <div className="p-3 sm:p-4 bg-teal-50 rounded-lg sm:rounded-xl">
                               <div className="flex items-start gap-2">
-                                <Stethoscope className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                                <Stethoscope className="w-4 h-4 sm:w-5 sm:h-5 text-teal-600 mt-0.5 flex-shrink-0" />
                                 <div>
-                                  <span className="font-semibold text-blue-800 text-sm sm:text-base">Important</span>
-                                  <p className="text-blue-700 mt-1 text-xs sm:text-sm md:text-base leading-relaxed">{question.important}</p>
+                                  <span className="font-semibold text-teal-800 text-sm sm:text-base">Important</span>
+                                  <p className="text-teal-700 mt-1 text-xs sm:text-sm md:text-base leading-relaxed">{question.important}</p>
                                 </div>
                               </div>
                             </div>
@@ -364,16 +364,16 @@ const PregnancyGuide = () => {
 
                           {/* Checklist */}
                           {question.checklist && (
-                            <div className="p-3 sm:p-4 bg-purple-50 rounded-lg sm:rounded-xl">
+                            <div className="p-3 sm:p-4 bg-emerald-50 rounded-lg sm:rounded-xl">
                               <div className="flex items-center gap-2 mb-2">
-                                <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600 flex-shrink-0" />
-                                <span className="font-semibold text-purple-800 text-sm sm:text-base">Checklist</span>
+                                <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 flex-shrink-0" />
+                                <span className="font-semibold text-emerald-800 text-sm sm:text-base">Checklist</span>
                               </div>
                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2">
                                 {question.checklist.map((item, itemIndex) => (
                                   <div key={itemIndex} className="flex items-start gap-2">
-                                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></div>
-                                    <span className="text-purple-700 text-xs sm:text-sm md:text-base leading-relaxed">{item}</span>
+                                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-emerald-500 rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></div>
+                                    <span className="text-emerald-700 text-xs sm:text-sm md:text-base leading-relaxed">{item}</span>
                                   </div>
                                 ))}
                               </div>
@@ -397,7 +397,7 @@ const PregnancyGuide = () => {
           viewport={{ once: true }}
           className="mt-8 sm:mt-12 md:mt-16 lg:mt-20 text-center"
         >
-          <div className="bg-gradient-to-r  from-teal-600 via-blue-600 to-indigo-700 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 text-white">
+          <div className="bg-gradient-to-r from-emerald-600 via-green-600 to-teal-700 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 text-white">
             <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight">
               Un accompagnement personnalisé
             </h3>
@@ -406,7 +406,7 @@ const PregnancyGuide = () => {
               avec des conseils adaptés à votre situation.
             </p>
             <motion.button
-              className="bg-white text-teal-600 px-6 sm:px-8 md:px-12 py-3 sm:py-4 rounded-lg sm:rounded-xl font-bold text-sm sm:text-base md:text-lg hover:bg-gray-100 transition-all shadow-lg"
+              className="bg-white text-emerald-600 px-6 sm:px-8 md:px-12 py-3 sm:py-4 rounded-lg sm:rounded-xl font-bold text-sm sm:text-base md:text-lg hover:bg-gray-100 transition-all shadow-lg"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => window.location.href = '/rendez-vous'}

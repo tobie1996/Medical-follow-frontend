@@ -163,7 +163,7 @@ const Profil = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 lg:px-8">
+  <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50/30 py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 lg:px-8">
       <div className="max-w-[90rem] mx-auto">
         {/* Header */}
         <motion.div 
@@ -176,7 +176,7 @@ const Profil = () => {
         {/* Bouton flottant pour ouvrir/fermer la sidebar */}
         <motion.button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="fixed bottom-6 right-6 bg-gradient-to-r from-teal-500 to-blue-500 text-white p-3 sm:p-4 rounded-full shadow-lg z-50"
+          className="fixed bottom-6 right-6 bg-gradient-to-r from-emerald-500 to-green-500 text-white p-3 sm:p-4 rounded-full shadow-lg z-50"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           initial={{ opacity: 0, scale: 0 }}
@@ -224,12 +224,12 @@ const Profil = () => {
 
                   {/* Profil rapide */}
                   <div className="text-center mb-6 sm:mb-8">
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-teal-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
                       <User className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                     </div>
                     <h3 className="text-lg sm:text-xl font-bold text-gray-800 leading-tight">{patientData.personalInfo.fullName}</h3>
                     <p className="text-sm sm:text-base text-gray-600 mt-1">Semaine {patientData.pregnancyInfo.currentWeek} de grossesse</p>
-                    <div className="mt-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium inline-block">
+                    <div className="mt-2 bg-gradient-to-r from-emerald-500 to-green-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium inline-block">
                       {patientData.pregnancyInfo.expectedDueDate}
                     </div>
                   </div>
@@ -245,7 +245,7 @@ const Profil = () => {
                         }}
                         className={`w-full flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg sm:rounded-xl transition-all text-sm sm:text-base ${
                           activeSection === item.id
-                            ? 'bg-gradient-to-r from-teal-500 to-blue-500 text-white shadow-lg'
+                            ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white shadow-lg'
                             : 'text-gray-600 hover:bg-gray-50'
                         }`}
                       >
@@ -300,7 +300,7 @@ const ProfileSection = ({ data, isEditing, onEdit, onChange }) => {
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">Mon Profil</h2>
         <motion.button
           onClick={() => onEdit(!isEditing)}
-          className="flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-blue-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold hover:from-teal-600 hover:to-blue-600 transition-all text-sm sm:text-base"
+          className="flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-green-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold hover:from-emerald-600 hover:to-green-600 transition-all text-sm sm:text-base"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -313,7 +313,7 @@ const ProfileSection = ({ data, isEditing, onEdit, onChange }) => {
         {/* Informations personnelles */}
         <div className="space-y-4 sm:space-y-6">
           <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4 flex items-center gap-2 sm:gap-3">
-            <User className="w-5 h-5 sm:w-6 sm:h-6 text-teal-600" />
+            <User className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600" />
             Informations Personnelles
           </h3>
           
@@ -357,13 +357,13 @@ const ProfileSection = ({ data, isEditing, onEdit, onChange }) => {
         {/* Informations médicales */}
         <div className="space-y-4 sm:space-y-6">
           <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4 flex items-center gap-2 sm:gap-3">
-            <Baby className="w-5 h-5 sm:w-6 sm:h-6 text-pink-600" />
+            <Baby className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600" />
             Suivi de Grossesse
           </h3>
 
           <div className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6">
             <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-pink-600 mb-1 sm:mb-2">
+              <div className="text-3xl sm:text-4xl font-bold text-emerald-600 mb-1 sm:mb-2">
                 {data.pregnancyInfo.currentWeek} semaines
               </div>
               <p className="text-sm sm:text-base text-gray-600">Terme actuel</p>
@@ -401,9 +401,9 @@ const ProfileSection = ({ data, isEditing, onEdit, onChange }) => {
 
           {/* Équipe médicale */}
           <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-blue-50 rounded-xl sm:rounded-2xl">
-            <h4 className="font-semibold text-blue-800 mb-2 text-sm sm:text-base">Équipe médicale</h4>
-            <p className="text-blue-700 text-sm sm:text-base">👩‍⚕️ {data.pregnancyInfo.doctor}</p>
-            <p className="text-blue-700 text-sm sm:text-base">🏥 {data.pregnancyInfo.hospital}</p>
+            <h4 className="font-semibold text-teal-800 mb-2 text-sm sm:text-base">Équipe médicale</h4>
+            <p className="text-teal-700 text-sm sm:text-base">👩‍⚕️ {data.pregnancyInfo.doctor}</p>
+            <p className="text-teal-700 text-sm sm:text-base">🏥 {data.pregnancyInfo.hospital}</p>
           </div>
         </div>
       </div>

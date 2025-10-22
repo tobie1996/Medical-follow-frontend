@@ -1,10 +1,27 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { Heart, Baby, Shield, Users, TrendingUp, Calendar, CheckCircle, Phone, ArrowRight, Sparkles, Star } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Heart, Baby, Shield, Users, TrendingUp, Calendar, CheckCircle, Phone, ArrowRight, Sparkles, Star, BookOpen, User, Home as HomeIcon } from 'lucide-react';
 
 const Home = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [currentTextIndex, setCurrentTextIndex] = React.useState(0);
+
+  // Textes qui alternent avec les images
+  const heroTexts = [
+    "Plateforme de consultation prénatale pour un suivi médical complet, sécurisé et personnalisé",
+    "Nos Services de santé vous accompagnent de haute qualité tout au long de votre grossesse",
+    "Un suivi prénatal complet et sécurisé pour une vie maternelle et infantile préservée"
+  ];
+
+  // Changer le texte toutes les 8 secondes (2 images * 4 secondes)
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTextIndex((prevIndex) => (prevIndex + 1) % heroTexts.length);
+    }, 8000);
+    return () => clearInterval(interval);
+  }, []);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
@@ -38,10 +55,19 @@ const Home = () => {
     transition: { duration: 0.8, ease: "easeOut" }
   };
 
+  // Mobile-only quick access icons mirroring header navigation
+  const navigationShortcuts = [
+    { icon: HomeIcon, label: 'Accueil', path: '/' },
+    { icon: Calendar, label: 'Consultation', path: '/rendez-vous' },
+    { icon: BookOpen, label: 'Guide', path: '/pregnancyguide' },
+    { icon: User, label: 'Profil', path: '/profil' },
+    { icon: Phone, label: 'Contact', path: '/contact' },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 mx-2 sm:mx-4 md:mx-[15px]">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50/30 mx-2 sm:mx-4 md:mx-[15px]">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-teal-600 via-blue-600 to-indigo-700 text-white py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 md:px-8 rounded-2xl md:rounded-3xl my-3 sm:my-4 md:my-6 shadow-2xl">
+      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-600 via-green-600 to-teal-700 text-white py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 md:px-8 rounded-2xl md:rounded-3xl my-3 sm:my-4 md:my-6 shadow-2xl">
         {/* Image Slider Background */}
         <div className="absolute inset-0 overflow-hidden rounded-2xl md:rounded-3xl">
           {[1, 2, 3, 4, 5, 6].map((imageNum, index) => (
@@ -83,7 +109,7 @@ const Home = () => {
             transition={{ duration: 20, repeat: Infinity }}
           />
           <motion.div
-            className="absolute -bottom-20 -right-20 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"
+            className="absolute -bottom-20 -right-20 w-96 h-96 bg-green-400/10 rounded-full blur-3xl"
             animate={{
               x: [0, -80, 0],
               y: [0, 80, 0],
@@ -120,22 +146,24 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white via-emerald-100 to-white bg-clip-text text-transparent">
               Votre Grossesse,
             </span>
             <br />
-            <span className="bg-gradient-to-r from-yellow-200 via-white to-blue-100 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-green-200 via-white to-emerald-100 bg-clip-text text-transparent">
               Notre Priorité
             </span>
           </motion.h1>
           
-          <motion.p 
-            className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-6 sm:mb-8 md:mb-10 max-w-4xl mx-auto font-light leading-relaxed text-blue-50 px-2 sm:px-4"
+            <motion.p 
+            key={currentTextIndex}
+            className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-6 sm:mb-8 md:mb-10 max-w-4xl mx-auto font-light leading-relaxed text-emerald-50 px-2 sm:px-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            exit={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.8 }}
           >
-            Plateforme de consultation prénatale pour un suivi médical complet, sécurisé et personnalisé
+            {heroTexts[currentTextIndex]}
           </motion.p>
           
           <motion.div 
@@ -146,11 +174,11 @@ const Home = () => {
           >
             <motion.button 
               onClick={() => navigate('/consultation')}
-              className="group relative bg-white text-teal-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg shadow-2xl overflow-hidden w-full sm:w-auto"
+              className="group relative bg-white text-emerald-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg shadow-2xl overflow-hidden w-full sm:w-auto"
               whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-blue-500 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-green-500 opacity-0 group-hover:opacity-10 transition-opacity"></div>
               <span className="relative flex items-center justify-center gap-2 sm:gap-3">
                 <span className="hidden sm:inline">Commencer mon suivi</span>
                 <span className="sm:hidden">Commencer</span>
@@ -159,7 +187,7 @@ const Home = () => {
             </motion.button>
             <motion.button 
               onClick={() => navigate('/pregnancyguide')}
-              className="group border-2 sm:border-3 border-white/50 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg backdrop-blur-sm hover:bg-white hover:text-teal-600 transition-all duration-300 w-full sm:w-auto"
+              className="group border-2 sm:border-3 border-white/50 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg backdrop-blur-sm hover:bg-white hover:text-emerald-600 transition-all duration-300 w-full sm:w-auto"
               whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -169,7 +197,44 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Statistiques importantes */}
+      {/* Grille d'icônes - mobile only, tout le reste masqué */}
+      <section className="md:hidden flex flex-col min-h-screen justify-center items-center bg-white">
+        <motion.div 
+          className="w-full max-w-md mx-auto pt-10 pb-8 px-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <div className="grid grid-cols-3 gap-5">
+            {navigationShortcuts.map((item, idx) => {
+              const ActiveIcon = item.icon;
+              const isActive = location.pathname === item.path;
+              return (
+                <motion.button
+                  key={item.label}
+                  onClick={() => navigate(item.path)}
+                  className={`flex flex-col items-center justify-center gap-2 py-5 rounded-2xl border transition-colors shadow-sm ${
+                    isActive
+                      ? 'text-emerald-600 bg-emerald-50 border-emerald-200 shadow-md'
+                      : 'text-gray-700 bg-white border-gray-200 hover:bg-gray-50'
+                  }`}
+                  whileTap={{ scale: 0.96 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.25, delay: 0.03 * idx }}
+                >
+                  <ActiveIcon className="w-8 h-8 mb-1" />
+                  <span className="text-xs font-medium leading-tight tracking-tight text-center">{item.label}</span>
+                </motion.button>
+              );
+            })}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Desktop/tablette: contenu complet */}
+      <div className="hidden md:block">
+        {/* Statistiques importantes */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 bg-white rounded-2xl md:rounded-3xl my-4 sm:my-6 md:my-8 shadow-xl border border-gray-100">
         <div className="max-w-7xl mx-auto">
           <motion.div 
@@ -177,7 +242,7 @@ const Home = () => {
             {...fadeInUp}
           >
             <motion.h2 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-teal-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent px-2 sm:px-4"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 bg-clip-text text-transparent px-2 sm:px-4"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -211,24 +276,24 @@ const Home = () => {
                 value: "0.2%", 
                 label: "Taux de mortalité", 
                 desc: "Mortalité infantile", 
-                gradient: "from-blue-500 via-cyan-500 to-sky-600",
-                iconBg: "from-blue-100 to-cyan-50" 
+                gradient: "from-green-500 via-emerald-500 to-teal-600",
+                iconBg: "from-green-100 to-emerald-50" 
               },
               { 
                 icon: Heart, 
                 value: "99.1%", 
                 label: "Satisfaction", 
                 desc: "Patientes satisfaites", 
-                gradient: "from-purple-500 via-violet-500 to-indigo-600",
-                iconBg: "from-purple-100 to-violet-50" 
+                gradient: "from-teal-500 via-emerald-500 to-green-600",
+                iconBg: "from-teal-100 to-emerald-50" 
               },
               { 
                 icon: Users, 
                 value: "15,000+", 
                 label: "Cette année", 
                 desc: "Naissances suivies", 
-                gradient: "from-orange-500 via-amber-500 to-red-500",
-                iconBg: "from-orange-100 to-amber-50" 
+                gradient: "from-emerald-500 via-green-500 to-teal-500",
+                iconBg: "from-emerald-100 to-green-50" 
               }
             ].map((stat, index) => (
               <motion.div
@@ -280,8 +345,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Importance du suivi prénatal */}
-      <section className="py-16 sm:py-20 md:py-24 lg:py-28 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-teal-50/50 via-blue-50/30 to-purple-50/50 rounded-2xl md:rounded-3xl my-4 sm:my-6 md:my-8 border border-blue-100">
+        {/* Importance du suivi prénatal */}
+      <section className="py-16 sm:py-20 md:py-24 lg:py-28 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-emerald-50/50 via-green-50/30 to-teal-50/50 rounded-2xl md:rounded-3xl my-4 sm:my-6 md:my-8 border border-emerald-100">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 lg:gap-20 items-center">
             <motion.div
@@ -291,7 +356,7 @@ const Home = () => {
               viewport={{ once: true }}
             >
               <motion.h2 
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-teal-600 via-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 bg-clip-text text-transparent leading-tight"
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -319,15 +384,15 @@ const Home = () => {
                     icon: Heart, 
                     title: "Santé optimale mère-enfant", 
                     desc: "Surveillance continue pour assurer le bien-être optimal de la mère et du bébé", 
-                    color: "blue",
-                    iconBg: "from-blue-100 to-cyan-50"
+                    color: "green",
+                    iconBg: "from-green-100 to-emerald-50"
                   },
                   { 
                     icon: CheckCircle, 
                     title: "Préparation à l'accouchement", 
                     desc: "Accompagnement personnalisé tout au long du parcours de grossesse", 
-                    color: "purple",
-                    iconBg: "from-purple-100 to-violet-50"
+                    color: "teal",
+                    iconBg: "from-teal-100 to-green-50"
                   }
                 ].map((item, index) => (
                   <motion.div 
@@ -348,7 +413,7 @@ const Home = () => {
                       <item.icon className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-${item.color}-600`} />
                     </motion.div>
                     <div className="flex-1">
-                      <h3 className="font-bold text-gray-800 text-base sm:text-lg md:text-xl mb-2 sm:mb-3 group-hover:text-teal-600 transition-colors">
+                      <h3 className="font-bold text-gray-800 text-base sm:text-lg md:text-xl mb-2 sm:mb-3 group-hover:text-emerald-600 transition-colors">
                         {item.title}
                       </h3>
                       <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">
@@ -381,9 +446,9 @@ const Home = () => {
                 viewport={{ once: true }}
               >
                 {[
-                  { period: "1er Trimestre", desc: "CPN1 - Consultation initiale", color: "teal", iconBg: "from-teal-100 to-cyan-50" },
-                  { period: "2ème Trimestre", desc: "CPN2-3 - Suivi régulier", color: "blue", iconBg: "from-blue-100 to-sky-50" },
-                  { period: "3ème Trimestre", desc: "CPN4+ - Préparation accouchement", color: "purple", iconBg: "from-purple-100 to-violet-50" }
+                  { period: "1er Trimestre", desc: "CPN1 - Consultation initiale", color: "emerald", iconBg: "from-emerald-100 to-green-50" },
+                  { period: "2ème Trimestre", desc: "CPN2-3 - Suivi régulier", color: "green", iconBg: "from-green-100 to-teal-50" },
+                  { period: "3ème Trimestre", desc: "CPN4+ - Préparation accouchement", color: "teal", iconBg: "from-teal-100 to-emerald-50" }
                 ].map((item, index) => (
                   <motion.div 
                     key={index}
@@ -415,14 +480,14 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services offerts */}
+        {/* Services offerts */}
       <section className="py-16 sm:py-20 md:py-24 lg:py-28 px-4 sm:px-6 md:px-8 bg-white rounded-2xl md:rounded-3xl my-4 sm:my-6 md:my-8 shadow-xl border border-gray-100">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             className="text-center mb-12 sm:mb-16 md:mb-20"
             {...fadeInUp}
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-teal-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 bg-clip-text text-transparent">
               Nos Services de Consultation
             </h2>
             <p className="text-gray-600 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-2 sm:px-4">
@@ -442,22 +507,22 @@ const Home = () => {
                 icon: Shield, 
                 title: "Examens Médicaux", 
                 items: ["Échographies de contrôle", "Analyses sanguines", "Tests de dépistage", "Surveillance fœtale"], 
-                gradient: "from-teal-500 via-cyan-500 to-blue-500",
-                iconBg: "from-teal-100 to-cyan-50" 
+                gradient: "from-emerald-500 via-green-500 to-teal-500",
+                iconBg: "from-emerald-100 to-green-50" 
               },
               { 
                 icon: Heart, 
                 title: "Suivi Personnalisé", 
                 items: ["Consultations régulières", "Plan de soins individualisé", "Conseils nutritionnels", "Soutien psychologique"], 
-                gradient: "from-blue-500 via-indigo-500 to-purple-600",
-                iconBg: "from-blue-100 to-indigo-50"
+                gradient: "from-green-500 via-emerald-500 to-teal-600",
+                iconBg: "from-green-100 to-emerald-50"
               },
               { 
                 icon: Baby, 
                 title: "Préparation", 
                 items: ["Cours de préparation", "Techniques de relaxation", "Information allaitement", "Suivi post-natal"], 
-                gradient: "from-purple-500 via-pink-500 to-rose-500",
-                iconBg: "from-purple-100 to-pink-50"
+                gradient: "from-teal-500 via-emerald-500 to-green-500",
+                iconBg: "from-teal-100 to-emerald-50"
               }
             ].map((service, index) => (
               <motion.div
@@ -508,8 +573,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Call to action */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-teal-600 via-blue-600 to-indigo-700 text-white rounded-2xl md:rounded-3xl my-4 sm:my-6 md:my-8 relative overflow-hidden shadow-2xl">
+        {/* Call to action */}
+      </div>
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-emerald-600 via-green-600 to-teal-700 text-white rounded-2xl md:rounded-3xl my-4 sm:my-6 md:my-8 relative overflow-hidden shadow-2xl">
         <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/10"></div>
         
         {/* Animated background - Hidden on small screens */}
@@ -538,10 +604,10 @@ const Home = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent leading-tight px-2 sm:px-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-white via-emerald-100 to-white bg-clip-text text-transparent leading-tight px-2 sm:px-4">
             Prête à Commencer Votre Suivi ?
           </h2>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-10 md:mb-12 font-light max-w-3xl mx-auto text-blue-50 leading-relaxed px-2 sm:px-4">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-10 md:mb-12 font-light max-w-3xl mx-auto text-emerald-50 leading-relaxed px-2 sm:px-4">
             Rejoignez des milliers de mamans qui ont fait confiance à notre expertise médicale de pointe
           </p>
           
@@ -554,7 +620,7 @@ const Home = () => {
           >
             <motion.button 
               onClick={() => navigate('/consultation')}
-              className="group relative bg-white text-teal-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg shadow-2xl overflow-hidden w-full sm:w-auto"
+              className="group relative bg-white text-emerald-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg shadow-2xl overflow-hidden w-full sm:w-auto"
               variants={scaleIn}
               whileHover={{ 
                 scale: 1.05, 
@@ -563,7 +629,7 @@ const Home = () => {
               }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-blue-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-green-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
               <span className="relative flex items-center justify-center gap-2 sm:gap-3">
                 <span className="hidden sm:inline">Commencer mon suivi</span>
                 <span className="sm:hidden">Commencer</span>
@@ -572,7 +638,7 @@ const Home = () => {
             </motion.button>
             <motion.button 
               onClick={() => navigate('/pregnancyguide')}
-              className="group border-2 sm:border-3 border-white/60 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg backdrop-blur-sm hover:bg-white hover:text-teal-600 transition-all duration-300 w-full sm:w-auto"
+              className="group border-2 sm:border-3 border-white/60 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg backdrop-blur-sm hover:bg-white hover:text-emerald-600 transition-all duration-300 w-full sm:w-auto"
               variants={scaleIn}
               whileHover={{ 
                 scale: 1.05, 

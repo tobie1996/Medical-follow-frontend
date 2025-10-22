@@ -26,8 +26,8 @@ const MedicalHistoryStep = ({ formData, onChange, errors }) => {
           error={errors.bloodType}
           required
           icon={Activity}
-          iconColor="text-blue-600"
-          focusColor="focus:ring-blue-500 focus:border-blue-500"
+          iconColor="text-green-600"
+          focusColor="focus:ring-green-500 focus:border-green-500"
           options={bloodTypeOptions}
         />
 
@@ -39,8 +39,8 @@ const MedicalHistoryStep = ({ formData, onChange, errors }) => {
           onChange={onChange}
           placeholder="Médicaments, aliments..."
           icon={AlertCircle}
-          iconColor="text-blue-600"
-          focusColor="focus:ring-blue-500 focus:border-blue-500"
+          iconColor="text-green-600"
+          focusColor="focus:ring-green-500 focus:border-green-500"
         />
       </div>
 
@@ -52,8 +52,8 @@ const MedicalHistoryStep = ({ formData, onChange, errors }) => {
         onChange={onChange}
         placeholder="Diabète, hypertension, asthme..."
         icon={Stethoscope}
-        iconColor="text-blue-600"
-        focusColor="focus:ring-blue-500 focus:border-blue-500"
+        iconColor="text-green-600"
+        focusColor="focus:ring-green-500 focus:border-green-500"
         rows={3}
       />
 
@@ -65,8 +65,8 @@ const MedicalHistoryStep = ({ formData, onChange, errors }) => {
         onChange={onChange}
         placeholder="Liste des médicaments que vous prenez..."
         icon={Activity}
-        iconColor="text-blue-600"
-        focusColor="focus:ring-blue-500 focus:border-blue-500"
+        iconColor="text-green-600"
+        focusColor="focus:ring-green-500 focus:border-green-500"
         rows={3}
       />
     </div>
