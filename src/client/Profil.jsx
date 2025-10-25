@@ -176,7 +176,7 @@ const Profil = () => {
         {/* Bouton flottant pour ouvrir/fermer la sidebar */}
         <motion.button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="fixed bottom-6 right-6 bg-gradient-to-r from-emerald-500 to-green-500 text-white p-3 sm:p-4 rounded-full shadow-lg z-50"
+          className="fixed md:bottom-6 bottom-20 right-6 bg-gradient-to-r from-emerald-500 to-green-500 text-white p-3 sm:p-4 rounded-full shadow-lg z-50"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           initial={{ opacity: 0, scale: 0 }}

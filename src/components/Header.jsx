@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Baby, Menu, X, User, Calendar, BookOpen, Phone, Home, UserPlus } from 'lucide-react';
+const MotionLink = motion(Link);
 import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
@@ -202,102 +203,49 @@ const Header = () => {
             </Link>
           </motion.div>
 
-          {/* Bouton menu mobile et tablette petite */}
-          <div className="md:hidden">
-            <motion.button
-              onClick={toggleMenu}
-              className="text-gray-700 hover:text-emerald-600 transition-colors p-2"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <motion.div
-                animate={{ rotate: isMenuOpen ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                {isMenuOpen ? <X className="w-6 h-6 md:w-7 md:h-7" /> : <Menu className="w-6 h-6 md:w-7 md:h-7" />}
-              </motion.div>
-            </motion.button>
+          {/* Mobile: we hide the top navbar and replace with bottom navigation (see bottom nav component) */}
+          <div className="md:hidden" aria-hidden="true">
+            {/* Empty placeholder to keep layout spacing on small devices */}
           </div>
         </div>
 
         {/* Menu mobile avec Framer Motion */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              className="md:hidden overflow-hidden"
-              variants={menuVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-            >
-              <motion.div 
-                className="px-3 sm:px-4 pt-3 sm:pt-4 pb-4 sm:pb-5 space-y-2 bg-gradient-to-br from-gray-50 to-teal-50 rounded-lg mb-4 sm:mb-6 shadow-lg"
-                variants={containerVariants}
-                initial="closed"
-                animate="open"
-                exit="closed"
-              >
-                {navigationItems.map((item, index) => (
-                  <motion.div
+        {/* Bottom navigation for mobile (enhanced) */}
+        <nav
+          className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg md:hidden z-40"
+          style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+        >
+          <div className="max-w-6xl mx-auto px-2">
+            <div className="flex justify-between items-center py-2">
+              {navigationItems.map((item) => {
+                const isActive = location.pathname === item.path;
+                return (
+                  <MotionLink
                     key={item.label}
-                    variants={menuItemVariants}
-                    whileHover={{ 
-                      scale: 1.02,
-                      x: 5,
-                      backgroundColor: "rgba(255, 255, 255, 0.8)"
-                    }}
-                    whileTap={{ scale: 0.98 }}
+                    to={item.path}
+                    onClick={() => handleItemClick(item.label)}
+                    whileTap={{ scale: 0.92 }}
+                    animate={{ y: isActive ? -4 : 0, scale: isActive ? 1.06 : 1 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    className={`flex-1 flex flex-col items-center justify-center py-2 px-1 transition-colors ${
+                      isActive ? 'text-emerald-600' : 'text-gray-600'
+                    }`}
                   >
-                    <Link
-                      to={item.path}
-                        onClick={() => handleItemClick(item.label)}
-                        className={`flex items-center space-x-3 sm:space-x-4 text-sm sm:text-base transition-all duration-200 px-3 sm:px-4 py-2 sm:py-3 rounded-md w-full ${
-                          location.pathname === item.path
-                          ? 'text-emerald-600 bg-white border-l-4 border-emerald-500 shadow-sm'
-                          : 'text-gray-700 hover:text-emerald-600 hover:bg-white'
-                        }`}
-                      >
-                      <item.icon className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
-                      <span className="whitespace-nowrap">{item.label}</span>
-                    </Link>
-                  </motion.div>
-                ))}
-                
-                <motion.div 
-                  className="border-t border-gray-200 pt-3 mt-3"
-                  variants={menuItemVariants}
-                >
-                  <Link to="/login">
-                    <motion.button 
-                      className="flex items-center space-x-3 sm:space-x-4 text-sm sm:text-base text-gray-700 hover:text-teal-600 hover:bg-white transition-all duration-200 px-3 sm:px-4 py-2 sm:py-3 rounded-md w-full"
-                      whileHover={{ 
-                        scale: 1.02,
-                        x: 5,
-                        backgroundColor: "rgba(255, 255, 255, 0.8)"
-                      }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <span className="whitespace-nowrap">Se connecter</span>
-                    </motion.button>
-                  </Link>
-                  <Link to="/register">
-                    <motion.button 
-                      className="flex items-center space-x-3 sm:space-x-4 bg-gradient-to-r from-teal-500 to-blue-500 text-white text-sm sm:text-base px-3 sm:px-4 py-2 sm:py-3 rounded-md hover:from-teal-600 hover:to-blue-600 transition-all duration-200 w-full mt-2 shadow-md"
-                      whileHover={{ 
-                        scale: 1.02,
-                        boxShadow: "0 8px 16px rgba(0,0,0,0.15)"
-                      }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <UserPlus className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
-                      <span className="whitespace-nowrap">S'inscrire</span>
-                    </motion.button>
-                  </Link>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                    <item.icon className={`w-6 h-6 mb-0.5 ${isActive ? 'opacity-100' : 'opacity-80'}`} />
+                    <span className="text-[11px] mt-0.5">{item.label}</span>
+                    {isActive && (
+                      <motion.span
+                        layoutId="bottom-indicator"
+                        className="mt-1 h-1 w-7 bg-emerald-600 rounded-full"
+                        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                      />
+                    )}
+                  </MotionLink>
+                );
+              })}
+            </div>
+          </div>
+        </nav>
       </div>
     </header>
   );

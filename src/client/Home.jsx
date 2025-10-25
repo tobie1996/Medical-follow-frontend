@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Heart, Baby, Shield, Users, TrendingUp, Calendar, CheckCircle, Phone, ArrowRight, Sparkles, Star, BookOpen, User, Home as HomeIcon } from 'lucide-react';
+import { Heart, Baby, Shield, Users, TrendingUp, Calendar, CheckCircle, Phone, ArrowRight, Sparkles, Star, BookOpen, User } from 'lucide-react';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -55,17 +55,9 @@ const Home = () => {
     transition: { duration: 0.8, ease: "easeOut" }
   };
 
-  // Mobile-only quick access icons mirroring header navigation
-  const navigationShortcuts = [
-    { icon: HomeIcon, label: 'Accueil', path: '/' },
-    { icon: Calendar, label: 'Consultation', path: '/rendez-vous' },
-    { icon: BookOpen, label: 'Guide', path: '/pregnancyguide' },
-    { icon: User, label: 'Profil', path: '/profil' },
-    { icon: Phone, label: 'Contact', path: '/contact' },
-  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50/30 mx-2 sm:mx-4 md:mx-[15px]">
+    <div className=" bg-gradient-to-br from-emerald-50 via-white to-green-50/30 mx-2 sm:mx-4 md:mx-[15px]">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-emerald-600 via-green-600 to-teal-700 text-white py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 md:px-8 rounded-2xl md:rounded-3xl my-3 sm:my-4 md:my-6 shadow-2xl">
         {/* Image Slider Background */}
@@ -197,40 +189,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Grille d'icônes - mobile only, tout le reste masqué */}
-      <section className="md:hidden flex flex-col min-h-screen justify-center items-center bg-white">
-        <motion.div 
-          className="w-full max-w-md mx-auto pt-10 pb-8 px-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          <div className="grid grid-cols-3 gap-5">
-            {navigationShortcuts.map((item, idx) => {
-              const ActiveIcon = item.icon;
-              const isActive = location.pathname === item.path;
-              return (
-                <motion.button
-                  key={item.label}
-                  onClick={() => navigate(item.path)}
-                  className={`flex flex-col items-center justify-center gap-2 py-5 rounded-2xl border transition-colors shadow-sm ${
-                    isActive
-                      ? 'text-emerald-600 bg-emerald-50 border-emerald-200 shadow-md'
-                      : 'text-gray-700 bg-white border-gray-200 hover:bg-gray-50'
-                  }`}
-                  whileTap={{ scale: 0.96 }}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.25, delay: 0.03 * idx }}
-                >
-                  <ActiveIcon className="w-8 h-8 mb-1" />
-                  <span className="text-xs font-medium leading-tight tracking-tight text-center">{item.label}</span>
-                </motion.button>
-              );
-            })}
-          </div>
-        </motion.div>
-      </section>
+      {/* Mobile internal menu removed — using header bottom navigation instead */}
 
       {/* Desktop/tablette: contenu complet */}
       <div className="hidden md:block">
@@ -572,10 +531,10 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
-
-        {/* Call to action */}
       </div>
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-emerald-600 via-green-600 to-teal-700 text-white rounded-2xl md:rounded-3xl my-4 sm:my-6 md:my-8 relative overflow-hidden shadow-2xl">
+
+  {/* Call to action */}
+  <section className="hidden md:block py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-emerald-600 via-green-600 to-teal-700 text-white rounded-2xl md:rounded-3xl my-4 sm:my-6 md:my-8 relative overflow-hidden shadow-2xl">
         <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/10"></div>
         
         {/* Animated background - Hidden on small screens */}
